@@ -58,6 +58,8 @@ params:
   ShowCodeCopyButtons: true
   ShowReadingTime: true
 
+  defaultTheme: "dark"
+  disableThemeToggle: true
 
 #search page
 outputs:
