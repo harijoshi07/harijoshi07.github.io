@@ -1,7 +1,11 @@
-baseURL: https://harijoshi.github.io/
+baseURL: https://harijoshi07.github.io/
 languageCode: en-us
 title: sometimesIwrite
 theme: ["PaperMod"]
+pagination.paperSize: 5
+#googleAnalytics: G-MEASUREMENT_ID
+
+enableRobotsTXT: true
 
 menu:
   main:
@@ -11,7 +15,7 @@ menu:
       weight: 10
 
     - identifier: blog
-      name: Blog
+      name: Blogs
       url: /blog/
       weight: 20
 
@@ -22,7 +26,7 @@ menu:
 
     - identifier: timeline
       name: Timeline
-      url: /archieve/
+      url: /timeline/
       weight: 30
 
     - identifier: tag
@@ -38,13 +42,23 @@ menu:
 
 params:
   homeInfoParams:
-    Title: Hey anon!
-    Content: documenting my journey here.
+    Title: hey you!
+    Content: welcome to sometimesIwrite - a space for stories, thoughts and maybe a little programming too.  
+
+
+  
+  assets:
+    favicon: "favicon.ico"
+    favicon16x16: "/favicon-16x16.png"
+    favicon32x32: "/favicon-32x32.png"
+    apple_touch_icon: "/apple-touch-icon.png"
+    safari_pinned_tab: "/safari-pinned-tab.svg"
+
 
  #links to other socials
   socialIcons:
     - name: "twitter"
-      url: "https://x.com/sunsetxicecream"
+      url: "https://x.com/sometimesHari__"
 
     - name: "linkedin"
       url: "https://linkedin.com/in/harijoshi07"
@@ -57,9 +71,12 @@ params:
   ShowPostNavLinks: true
   ShowCodeCopyButtons: true
   ShowReadingTime: true
+  ShowWordCount: 
+  hideSummary: true
 
   defaultTheme: "dark"
   disableThemeToggle: true
+  DateFormat: "January 2, 2006"
 
 #search page
 outputs:
@@ -67,9 +84,3 @@ outputs:
     - HTML
     - RSS
     - JSON
-
-
-
-  
-
-
