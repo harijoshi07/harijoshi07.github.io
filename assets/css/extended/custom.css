@@ -38,5 +38,8 @@
   .dark.list {
     background: var(--theme);
   }
-
+ 
+  .post-entry {
+    background-color: #1E1E2E !important;
+}
   
