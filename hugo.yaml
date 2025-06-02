@@ -68,7 +68,7 @@ params:
   
 
   ShowBreadCrumbs: true
-  ShowPostNavLinks: true
+  ShowPostNavLinks: false
   ShowCodeCopyButtons: true
   ShowReadingTime: true
   ShowWordCount: 
