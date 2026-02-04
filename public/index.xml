@@ -4,9 +4,9 @@
     <title>sometimesIwrite</title>
     <link>http://localhost:1313/</link>
     <description>Recent content on sometimesIwrite</description>
-    <generator>Hugo -- 0.147.5</generator>
+    <generator>Hugo -- 0.155.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Jun 2025 20:12:49 +0545</lastBuildDate>
+    <lastBuildDate>Mon, 02 Feb 2026 20:12:49 +0545</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>what even is self love:</title>
@@ -23,6 +23,13 @@
       <guid>http://localhost:1313/blog/not-a-film-reviewunko-sweater/</guid>
       <description>&lt;p&gt;unko sweater feels like the warmest hug i’ve had in a long, long time. it wraps you around with nostalgia and heartbreak. it talks about love, longing and what not. the kind of love that’s timid, shy and nervous. the kind that can only be expressed through poems and letters.&lt;/p&gt;
 &lt;p&gt;it’s poetic. she knitted the “ऊनको स्वीटर” for him — a sweater that was never finished, much like their story. half-baked. incomplete. full of love.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Not a Film Review: Laila Majnu</title>
+      <link>http://localhost:1313/blog/not-a-film-reviewlaila-majnu/</link>
+      <pubDate>Mon, 02 Feb 2026 20:12:49 +0545</pubDate>
+      <guid>http://localhost:1313/blog/not-a-film-reviewlaila-majnu/</guid>
+      <description></description>
     </item>
   </channel>
 </rss>
