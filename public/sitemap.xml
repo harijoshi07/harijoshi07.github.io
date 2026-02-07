@@ -2,33 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/blog/what-even-is-self-love/</loc>
+    <loc>https://harijoshi07.github.io/blog/what-even-is-self-love/</loc>
     <lastmod>2025-05-24T21:21:20+05:45</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/not-a-film-reviewunko-sweater/</loc>
+    <loc>https://harijoshi07.github.io/blog/not-a-film-reviewunko-sweater/</loc>
     <lastmod>2025-06-02T20:12:49+05:45</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/not-a-film-reviewlaila-majnu/</loc>
-    <lastmod>2026-02-02T20:12:49+05:45</lastmod>
+    <loc>https://harijoshi07.github.io/blog/</loc>
+    <lastmod>2025-06-02T20:12:49+05:45</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/</loc>
-    <lastmod>2026-02-02T20:12:49+05:45</lastmod>
+    <loc>https://harijoshi07.github.io/</loc>
+    <lastmod>2025-06-02T20:12:49+05:45</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2026-02-02T20:12:49+05:45</lastmod>
+    <loc>https://harijoshi07.github.io/library/</loc>
   </url><url>
-    <loc>http://localhost:1313/library/</loc>
+    <loc>https://harijoshi07.github.io/tag/</loc>
   </url><url>
-    <loc>http://localhost:1313/tag/</loc>
+    <loc>https://harijoshi07.github.io/timeline/</loc>
   </url><url>
-    <loc>http://localhost:1313/timeline/</loc>
+    <loc>https://harijoshi07.github.io/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://harijoshi07.github.io/search/</loc>
   </url><url>
-    <loc>http://localhost:1313/search/</loc>
+    <loc>https://harijoshi07.github.io/tags/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-  </url><url>
-    <loc>http://localhost:1313/archieve/</loc>
+    <loc>https://harijoshi07.github.io/archieve/</loc>
   </url>
 </urlset>

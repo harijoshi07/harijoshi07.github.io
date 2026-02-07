@@ -3,8 +3,6 @@ languageCode: en-us
 title: sometimesIwrite
 theme: ["PaperMod"]
 pagination.paperSize: 5
-googleAnalytics: G-H0XHLEN1KG
-
 enableRobotsTXT: true
 
 menu:
@@ -44,6 +42,10 @@ params:
   homeInfoParams:
     Title: hey you!
     Content: welcome to sometimesIwrite - a space for stories, thoughts and maybe a little programming too.  
+
+  services:
+    googleAnalytics:
+      id: G-LPKV9C9DLS
 
 
   
