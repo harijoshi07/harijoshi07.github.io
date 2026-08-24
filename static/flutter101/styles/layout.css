@@ -1,0 +1,130 @@
+/* ═══════════════════════════════════════════════════════════════
+   DECK & SLIDE SYSTEM
+   ═══════════════════════════════════════════════════════════════ */
+.deck {
+  width: 100vw; height: 100vh;
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+}
+
+/* ── Progress bar ───────────────────────────────────────────── */
+.progress-bar {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px; background: rgba(255, 255, 255, 0.05);
+  z-index: 100;
+}
+.progress-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  transition: width 0.35s ease;
+  box-shadow: 0 0 10px var(--blue);
+}
+
+/* ── Footer HUD ─────────────────────────────────────────────── */
+.hud {
+  position: fixed; left: 0; right: 0; bottom: 0; height: clamp(48px, 6vh, 64px);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(20px, 4vw, 60px);
+  background: linear-gradient(0deg, var(--bg-crust) 40%, transparent);
+  z-index: 100;
+}
+.hud-left, .hud-right { flex: 1; display: flex; }
+.hud-right { justify-content: flex-end; }
+.hud-mark { font-family: var(--font-code); font-size: clamp(10px, 0.85vw, 11.5px); color: var(--t-muted); letter-spacing: 0.04em; }
+.hud-center { display: flex; align-items: center; gap: 14px; }
+.hud-count { font-family: var(--font-code); font-size: clamp(11px, 0.95vw, 12.5px); color: var(--t-secondary); letter-spacing: 0.03em; }
+.hud-count-sep { color: var(--t-muted); margin: 0 4px; }
+.nav-btn {
+  width: clamp(28px, 2.5vw, 36px); height: clamp(28px, 2.5vw, 36px); border-radius: 50%;
+  background: rgba(255,255,255,0.03); border: 1px solid var(--bdr-subtle); color: var(--t-primary);
+  display: flex; align-items: center; justify-content: center; font-size: 14px;
+  transition: 0.2s; cursor: pointer;
+}
+.nav-btn:hover { border-color: var(--blue); color: var(--blue); background: rgba(84, 197, 248, 0.08); }
+
+/* ── Slide base ─────────────────────────────────────────────── */
+.slide {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  background: var(--bg-base);
+  opacity: 0; pointer-events: none;
+  transform: translateX(100%);
+  transition: transform var(--dur-slide) var(--ease-expo),
+              opacity   var(--dur-slide) ease;
+  overflow: hidden;
+}
+.slide.is-active {
+  opacity: 1; pointer-events: auto;
+  transform: translateX(0%);
+}
+.slide.is-prev {
+  opacity: 0; pointer-events: none;
+  transform: translateX(-100%);
+}
+
+/* ── Slide Header ───────────────────────────────────────────── */
+.slide-hdr {
+  display: flex; align-items: center; gap: 14px;
+  padding: clamp(16px, 2.5vh, 28px) var(--pad) 0;
+  flex-shrink: 0; z-index: 10;
+}
+.ch-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 3px 10px; border-radius: var(--r-pill);
+  background: var(--blue-dim); border: 1px solid rgba(84, 197, 248, 0.25);
+  font-size: var(--fs-badge); font-weight: 700;
+  color: var(--blue); letter-spacing: 0.08em; text-transform: uppercase;
+}
+.ch-badge .dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--blue);
+}
+.ch-title {
+  font-size: var(--fs-eyebrow); font-weight: 500;
+  color: var(--t-secondary); letter-spacing: 0.05em;
+}
+
+/* ── Slide Content Grid ─────────────────────────────────────── */
+.slide-body {
+  flex: 1; display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+  padding: var(--pad);
+  overflow: hidden;
+  align-content: center;
+  align-items: center;
+}
+.slide-body.full  { grid-template-columns: 1fr; }
+.slide-body.w55   { grid-template-columns: 55fr 45fr; }
+.slide-body.w60   { grid-template-columns: 60fr 40fr; }
+.slide-body.w48   { grid-template-columns: 48fr 52fr; }
+
+/* ── Panes ──────────────────────────────────────────────────── */
+.pane {
+  display: flex; flex-direction: column;
+  gap: var(--pane-gap); overflow: visible;
+  justify-content: center;
+}
+.pane.center { justify-content: center; }
+
+/* ── Presenter notes overlay ────────────────────────────────── */
+.notes-overlay {
+  position: absolute; bottom: 20px; right: 20px;
+  width: min(440px, 90vw);
+  background: rgba(15, 15, 22, 0.95);
+  border: 1px solid var(--bdr-card);
+  border-radius: var(--r-md);
+  padding: 16px 20px;
+  font-size: var(--fs-body-sm);
+  color: var(--t-secondary);
+  line-height: 1.6;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  z-index: 200;
+  display: none;
+}
+.notes-overlay.show { display: block; }
+.notes-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--blue); margin-bottom: 6px;
+}

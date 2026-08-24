@@ -1,0 +1,3644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>flutter 101 — presentation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Yantramanav:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- Progress bar -->
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+
+  <!-- ════════════════════════════════════════════════════════
+       SLIDES (Compiled from chapters/*.html)
+       ════════════════════════════════════════════════════════ -->
+
+  <!-- ── Chapter: 00_intro.html ── -->
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 0: TITLE
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-title" data-notes="title slide. open with: 'i\'m हरि — native android engineer. today we\'re diving into flutter 101: taking you from first principles to production-grade mobile architecture.' let it breathe.">
+  <!-- Texture + orbs -->
+  <div class="grid-bg"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <!-- Corner Presenter Credit -->
+  <div class="corner-author">
+    <span class="author-name">हरि</span>
+  </div>
+
+  <div class="title-stack">
+    <!-- Badge -->
+    <div class="event-badge">
+      <span class="live-dot"></span>
+      tech talk
+    </div>
+
+    <!-- Flutter Logo at Center -->
+    <div class="hero-logo-wrap">
+      <svg class="hero-flutter-logo" viewBox="0 0 166 202" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M102.167 0L0 102.167L31.5 133.667L165.167 0H102.167Z" fill="#54C5F8"/>
+        <path d="M102.167 100.833L48.1667 154.833L79.6667 186.333L102.167 163.833L133.667 132.333L165.167 100.833H102.167Z" fill="#54C5F8"/>
+        <path d="M79.6667 186.333L95.4167 202.083H158.417L111.167 154.833L79.6667 186.333Z" fill="#01579B"/>
+        <path d="M111.167 154.833L133.667 132.333L165.167 100.833L158.417 94.0833H95.4167L79.6667 109.833L111.167 141.333" fill="#29B6F6"/>
+      </svg>
+    </div>
+
+    <!-- Headline -->
+    <h1 class="title-h1">flutter 101</h1>
+
+    <!-- Sub -->
+    <p class="title-sub">
+      From <em>hello world</em> to production-grade architecture.
+    </p>
+
+    <div class="title-div"></div>
+  </div>
+</section>
+
+
+  <!-- ── Chapter: 01_setup.html ── -->
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 1 — CH 1.1: ONE COMMAND
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch1-1" data-notes="chapter 1.1. let the terminal play out. pause here: 'one command. that\'s the entire setup. flutter scaffolds everything in seconds.'">
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 1</div>
+    <span class="ch-title">the setup</span>
+  </div>
+
+  <div class="slide-body w55">
+    <!-- LEFT: Concept -->
+    <div class="pane">
+      <div class="s d0"><p class="eyebrow">the starting point</p></div>
+      <div class="s d1">
+        <h2 class="h2">one command.<br>every platform.</h2>
+      </div>
+      <div class="s d2">
+        <div class="cmd-block">$ flutter create my_app</div>
+      </div>
+      <div class="s d3">
+        <p class="body-txt">
+          Scaffolds Android, iOS, and Web projects ready out of the box — zero config.
+        </p>
+      </div>
+    </div>
+
+    <!-- RIGHT: Terminal -->
+    <div class="pane center">
+      <div class="s d2">
+        <div class="terminal">
+          <div class="term-bar">
+            <span style="width:10px;height:10px;border-radius:50%;background:#FF5F57;display:inline-block;"></span>
+            <span style="width:10px;height:10px;border-radius:50%;background:#FEBC2E;display:inline-block;"></span>
+            <span style="width:10px;height:10px;border-radius:50%;background:#28C840;display:inline-block;"></span>
+            <div class="term-title">zsh — 80×24</div>
+          </div>
+          <div class="term-body" id="term-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 2 — CH 1.2: FULL PROJECT TREE
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch1-2" data-notes="chapter 1.2. starting project structure: 'this is what flutter scaffolds for us. notice lib/ and pubspec.yaml — this is where our actual work happens.'">
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 1</div>
+    <span class="ch-title">the setup: project structure</span>
+  </div>
+
+  <div class="slide-body full" style="max-width: 980px; margin: 0 auto; width: 100%; padding: clamp(14px, 2vw, 32px) clamp(20px, 3vw, 48px);">
+    <!-- Centered Tree Pane -->
+    <div class="pane" style="width: 100%; gap: 10px;">
+      <div class="s d0" style="text-align: center;">
+        <h2 class="h2" style="font-size:clamp(22px,2.5vw,34px); margin-bottom: 2px;">
+          starting project structure
+        </h2>
+      </div>
+      <div class="s d1" style="width: 100%;">
+        <div class="code-win" style="max-height: 74vh;">
+          <div class="code-win-bar">
+            <div class="mac-dots">
+              <span class="md-r"></span>
+              <span class="md-y"></span>
+              <span class="md-g"></span>
+            </div>
+            <span class="win-fname">my_app/</span>
+            <span class="win-lang">tree</span>
+          </div>
+          <pre style="padding: clamp(14px, 1.4vw, 20px) clamp(16px, 1.8vw, 24px); overflow-x: auto; overflow-y: hidden;"><code id="tree-full" style="font-family:var(--font-code);font-size:clamp(12px, 0.95vw, 15px);line-height:1.52;"></code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 3 — CH 1.3: LIB/MAIN.DART & UI COMPOSITION
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch1-4" data-has-fragments="true" data-fragments-count="1" data-current-frag="0" data-notes="chapter 1.3. main.dart and ui composition. point to the ui frame: 'here is the starter main.dart template. notice how declarative it is — there is no layout xml. to center our text, we simply compose a center widget.' (press NEXT to animate)">
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 1</div>
+    <span class="ch-title">the setup: hello world</span>
+  </div>
+
+  <div class="slide-body w55">
+    <!-- LEFT: Code Only -->
+    <div class="pane center" style="align-items:stretch;">
+      <div class="s d1" style="position:relative; height: clamp(470px, 42vw, 590px); display:flex; flex-direction:column;">
+        <!-- Step 1 Code (Starter main.dart template with Text) -->
+        <div class="code-win code-step-1" style="height:100%; max-height:none;">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">lib/main.dart</span><span class="win-lang">dart</span>
+          </div>
+          <pre style="flex:1;overflow:auto;padding:clamp(18px, 1.8vw, 26px);"><code class="language-dart" style="font-size:clamp(12px, 0.95vw, 15px);line-height:1.68;">import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const Text('hello world'),
+    );
+  }
+}</code></pre>
+        </div>
+
+        <!-- Step 2 Code (Centered) -->
+        <div class="code-win code-step-2" style="position:absolute; inset:0; height:100%; max-height:none;">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">lib/main.dart</span><span class="win-lang">dart</span>
+          </div>
+          <pre style="flex:1;overflow:auto;padding:clamp(18px, 1.8vw, 26px);"><code class="language-dart" style="font-size:clamp(12px, 0.95vw, 15px);line-height:1.68;">import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const Center(
+        child: Text('hello world'),
+      ),
+    );
+  }
+}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Phone UI (Google Pixel) -->
+    <div class="pane center" style="align-items:center;">
+      <div class="pixel-frame s d2">
+        <div class="pixel-camera"></div>
+        <div class="pixel-screen">
+          <div class="pixel-status-bar">
+            <span class="status-time">9:41</span>
+            <div class="status-icons">
+              <span class="status-icon-dot"></span>
+              <span class="status-icon-dot"></span>
+              <span class="status-icon-dot"></span>
+            </div>
+          </div>
+          <div class="phone-text">hello world</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 4 — CH 1.4: PUBSPEC.YAML
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch1-5" data-notes="chapter 1.4. pubspec.yaml: 'this is your build.gradle. everything goes here — dependencies, assets, sdk versioning. clean and readable yaml format.'">
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 1</div>
+    <span class="ch-title">the setup: pubspec.yaml</span>
+  </div>
+
+  <div class="slide-body">
+    <!-- LEFT -->
+    <div class="pane">
+      <div class="s d0"><p class="eyebrow">configuration</p></div>
+      <div class="s d1">
+        <h2 class="h2" style="font-size:clamp(22px,2.6vw,34px);">
+          one file for<br>all dependencies.
+        </h2>
+      </div>
+      <div class="s d2">
+        <p class="body-txt">
+          Declares packages, assets, fonts, etc. in clean, readable YAML.
+        </p>
+      </div>
+    </div>
+
+    <!-- RIGHT: YAML Code -->
+    <div class="pane center">
+      <div class="s d2">
+        <div class="code-win">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">pubspec.yaml</span><span class="win-lang">yaml</span>
+          </div>
+          <pre style="overflow:auto;"><code class="language-yaml">name: my_app
+description: A new Flutter project.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- ── Chapter: 02_widgets.html ── -->
+<!-- ════════════════════════════════════════════════════════
+     CH2 TYPEWRITER ENGINE + LIVE DEMO SYSTEM
+     Inspired by flutter-field-notes-deck.html
+     ════════════════════════════════════════════════════════ -->
+<script>
+(function(){
+  'use strict';
+  let ch2Token = 0;
+
+  /* ── Shared utilities ─────────────────────────────────── */
+  function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+  function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function guard(token, fn){ return async function(){ if(token !== ch2Token) return; await fn(); }; }
+
+  async function typeLine(el, plain, speed, token){
+    el.innerHTML = '<span class="ch2-cursor"></span>';
+    for(let i = 0; i <= plain.length; i++){
+      if(token !== ch2Token) return false;
+      el.innerHTML = esc(plain.slice(0, i)) + '<span class="ch2-cursor"></span>';
+      await sleep(speed + Math.random() * speed * 0.4);
+    }
+    return true;
+  }
+
+  async function typeScript(containerId, lines, speed, token){
+    const el = document.getElementById(containerId);
+    if(!el) return;
+    el.innerHTML = '';
+    for(const line of lines){
+      if(token !== ch2Token) return;
+      const div = document.createElement('div');
+      div.className = 'ch2-code-line';
+      el.appendChild(div);
+      const ok = await typeLine(div, line.plain, speed, token);
+      if(!ok) return;
+      div.innerHTML = line.html !== undefined ? line.html : esc(line.plain);
+      if(line.after){ await line.after(); }
+      if(token !== ch2Token) return;
+      await sleep(line.pause !== undefined ? line.pause : 160);
+    }
+  }
+
+  function fadePhone(el, html){
+    return new Promise(resolve => {
+      el.style.opacity = 0;
+      setTimeout(() => { el.innerHTML = html; el.style.opacity = 1; resolve(); }, 180);
+    });
+  }
+
+  /* demo-text: Text & TextField progression */
+  async function playDemoText(token){
+    const codeEl = document.getElementById('ch2-code-text');
+    const phoneEl = document.getElementById('ch2-phone-text');
+    const captionEl = document.getElementById('ch2-caption-text');
+    if(!codeEl || !phoneEl) return;
+    phoneEl.style.opacity = 1;
+    phoneEl.innerHTML = '';
+
+    const htmlBare = '<div class="c2ph-topleft"><span class="c2ph-text-sm">Discover</span></div>';
+    const htmlBold = '<div class="c2ph-topleft"><span class="c2ph-text-lg">Discover</span></div>';
+    const htmlSubtitle = '<div class="c2ph-topleft"><span class="c2ph-text-muted">Find books, authors, and characters</span></div>';
+    
+    // Bare TextField (underline border + blinking cursor)
+    const htmlFieldBare = '<div class="c2ph-topleft" style="padding-top:8px;"><div style="border-bottom: 1.5px solid rgba(229,226,225,0.4); padding: 8px 0; display:flex; align-items:center; gap:2px; width:100%;"><span style="font-family:var(--font-ui); font-size:10px; color:rgba(229,226,225,0.7);">Search</span><span class="c2ph-caret"></span></div></div>';
+    
+    // Decorated SearchInputBar TextField (flat #2A2A2A, rounded 6px for 12px Flutter radius, no shadow, full padding)
+    const htmlFieldDecorated = '<div class="c2ph-topleft" style="padding-top:4px;"><div style="background:#2A2A2A; border-radius:6px; padding:10px 10px; display:flex; align-items:center; gap:8px; width:100%; box-sizing:border-box;">' +
+      '<svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:#DDC0BF;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
+      '<span style="font-family:var(--font-ui); font-size:9.5px; color:#DDC0BF; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; line-height:1.2;">Search books, authors, characters…</span>' +
+    '</div></div>';
+
+    const lines = [
+      // --- PART 1: TEXT ---
+      {plain:"// ── 1. Text — strings & styling ──────────────",
+        html:"<span class='c2-cmt'>// ── 1. Text — strings & styling ──────────────</span>"},
+      {plain:'Text("Discover")',
+        html:'<span class="c2-type">Text</span>(<span class="c2-str">"Discover"</span>)',
+        after: guard(token, async () => {
+          if(captionEl) captionEl.textContent = 'Text( "Discover" )';
+          await fadePhone(phoneEl, htmlBare);
+        })},
+      {plain:"", html:"&nbsp;", pause:220},
+      {plain:"Text(",
+        html:'<span class="c2-type">Text</span>('},
+      {plain:'  "Discover",',
+        html:'  <span class="c2-str">"Discover"</span>,'},
+      {plain:"  style: TextStyle(",
+        html:'  style: <span class="c2-type">TextStyle</span>('},
+      {plain:"    fontSize: 28,",
+        html:'    fontSize: <span class="c2-num">28</span>,'},
+      {plain:"    fontWeight: FontWeight.bold,",
+        html:'    fontWeight: <span class="c2-type">FontWeight</span>.bold,'},
+      {plain:"  ),",  html:"  ),"},
+      {plain:")", html:")",
+        after: guard(token, async () => await fadePhone(phoneEl, htmlBold))},
+      {plain:"", html:"&nbsp;", pause:240},
+      {plain:"Text(",
+        html:'<span class="c2-type">Text</span>('},
+      {plain:'  "Find books, authors, and characters",',
+        html:'  <span class="c2-str">"Find books, authors, and characters"</span>,'},
+      {plain:"  style: TextStyle(",
+        html:'  style: <span class="c2-type">TextStyle</span>('},
+      {plain:"    color: Color(0xFFDDC0BF),",
+        html:'    color: <span class="c2-type">Color</span>(<span class="c2-num">0xFFDDC0BF</span>),'},
+      {plain:"  ),",  html:"  ),"},
+      {plain:")", html:")",
+        after: guard(token, async () => {
+          if(captionEl) captionEl.textContent = 'Text( "Find books…" )';
+          await fadePhone(phoneEl, htmlSubtitle);
+        })},
+      {plain:"", html:"&nbsp;", pause:280},
+
+      // --- PART 2: TEXTFIELD ---
+      {plain:"// ── 2. TextField — user input ────────────────",
+        html:"<span class='c2-cmt'>// ── 2. TextField — user input ────────────────</span>"},
+      {plain:"TextField()",
+        html:"<span class='c2-type'>TextField</span>()",
+        after: guard(token, async () => {
+          if(captionEl) captionEl.textContent = 'TextField()';
+          await fadePhone(phoneEl, htmlFieldBare);
+        })},
+      {plain:"", html:"&nbsp;", pause:220},
+      {plain:"TextField(",
+        html:"<span class='c2-type'>TextField</span>("},
+      {plain:"  decoration: InputDecoration(",
+        html:"  decoration: <span class='c2-type'>InputDecoration</span>("},
+      {plain:'    hintText: "Search books, authors, characters…",',
+        html:'    hintText: <span class="c2-str">"Search books, authors, characters…"</span>,'},
+      {plain:"    prefixIcon: Icon(Icons.search_rounded),",
+        html:"    prefixIcon: <span class='c2-type'>Icon</span>(<span class='c2-type'>Icons</span>.search_rounded),"},
+      {plain:"    filled: true,",
+        html:"    filled: <span class='c2-kw'>true</span>,"},
+      {plain:"    fillColor: Color(0xFF2A2A2A),",
+        html:"    fillColor: <span class='c2-type'>Color</span>(<span class='c2-num'>0xFF2A2A2A</span>),"},
+      {plain:"    border: OutlineInputBorder(",
+        html:"    border: <span class='c2-type'>OutlineInputBorder</span>("},
+      {plain:"      borderRadius: BorderRadius.circular(12),",
+        html:"      borderRadius: <span class='c2-type'>BorderRadius</span>.circular(<span class='c2-num'>12</span>),"},
+      {plain:"      borderSide: BorderSide.none,",
+        html:"      borderSide: <span class='c2-type'>BorderSide</span>.none,"},
+      {plain:"    ),", html:"    ),"},
+      {plain:"  ),", html:"  ),"},
+      {plain:")", html:")",
+        after: guard(token, async () => {
+          if(captionEl) captionEl.textContent = 'TextField( InputDecoration(…) )';
+          await fadePhone(phoneEl, htmlFieldDecorated);
+        })},
+    ];
+    await typeScript('ch2-code-text', lines, 15, token);
+  }
+
+  /* demo-icon (atoms): Icon -> Image -> Button progression */
+  async function playDemoIcon(token){
+    const codeEl = document.getElementById('ch2-code-icon');
+    const phoneEl = document.getElementById('ch2-phone-icon');
+    const captionEl = document.getElementById('ch2-caption-icon');
+    if(!codeEl || !phoneEl) return;
+    phoneEl.style.opacity = 1;
+    phoneEl.innerHTML = '';
+
+    const iconBare = '<div class="c2ph-topleft"><svg viewBox="0 0 24 24" style="width:24px;height:24px;stroke:#E5E2E1;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>';
+    const iconSized = '<div class="c2ph-topleft"><svg viewBox="0 0 24 24" style="width:40px;height:40px;stroke:#FFB3B1;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>';
+    
+    const imageRaw = '<div class="c2ph-topleft"><img src="assets/book_cover.jpg" style="max-width:100%; border-radius:2px; display:block;" /></div>';
+    const imageClipped = '<div class="c2ph-topleft"><img src="assets/book_cover.jpg" style="width:100px; height:150px; object-fit:cover; border-radius:8px; display:block; box-shadow:0 6px 16px rgba(0,0,0,0.6);" /></div>';
+    
+    const btnOutlined = '<div class="c2ph-topleft" style="padding-top:6px;"><button style="background:transparent; border:1px solid rgba(255,179,177,0.5); color:#FFB3B1; border-radius:5px; padding:7px 14px; font-family:var(--font-ui); font-size:10px; font-weight:600; cursor:pointer; width:fit-content; outline:none; display:inline-flex; align-items:center; justify-content:center;">Editions</button></div>';
+    const btnFilled = '<div class="c2ph-topleft" style="padding-top:6px;"><button style="background:#FFB3B1; border:none; color:#630C16; border-radius:5px; padding:7px 14px; font-family:var(--font-ui); font-size:10px; font-weight:700; cursor:pointer; width:fit-content; outline:none; display:inline-flex; align-items:center; justify-content:center;">Add to Bookshelf</button></div>';
+
+    const lines = [
+      // 1. Icon
+      {plain:"// ── 1. Icon (vector glyphs) ─────────────────",
+        html:"<span class='c2-cmt'>// ── 1. Icon (vector glyphs) ─────────────────</span>"},
+      {plain:"Icon(Icons.search_rounded)",
+        html:"<span class='c2-type'>Icon</span>(<span class='c2-type'>Icons</span>.search_rounded)",
+        after: guard(token, async () => {
+          if(captionEl) captionEl.textContent = 'Icon( Icons.search_rounded )';
+          await fadePhone(phoneEl, iconBare);
+        })},
+      {plain:"", html:"&nbsp;", pause:220},
+      {plain:"Icon(",
+        html:"<span class='c2-type'>Icon</span>("},
+      {plain:"  Icons.search_rounded,",
+        html:"  <span class='c2-type'>Icons</span>.search_rounded,"},
+      {plain:"  size: 40,",
+        html:"  size: <span class='c2-num'>40</span>,"},
+      {plain:"  color: Color(0xFFFFB3B1), // primary",
+        html:"  color: <span class='c2-type'>Color</span>(<span class='c2-num'>0xFFFFB3B1</span>), <span class='c2-cmt'>// primary</span>",
+        after: guard(token, async () => await fadePhone(phoneEl, iconSized))},
+      {plain:")", html:")"},
+      {plain:"", html:"&nbsp;", pause:280},
+
+      // 2. Image
+      {plain:"// ── 2. Image & ClipRRect (assets) ───────────",
+        html:"<span class='c2-cmt'>// ── 2. Image & ClipRRect (assets) ───────────</span>"},
+      {plain:'Image.asset("assets/book_cover.jpg")',
+        html:'<span class="c2-type">Image</span>.asset(<span class="c2-str">"assets/book_cover.jpg"</span>)',
+        after: guard(token, async () => {
+          if(captionEl) captionEl.textContent = 'Image.asset( "assets/…" )';
+          await fadePhone(phoneEl, imageRaw);
+        })},
+      {plain:"", html:"&nbsp;", pause:220},
+      {plain:"ClipRRect(",
+        html:"<span class='c2-type'>ClipRRect</span>("},
+      {plain:"  borderRadius: BorderRadius.circular(8),",
+        html:"  borderRadius: <span class='c2-type'>BorderRadius</span>.circular(<span class='c2-num'>8</span>),"},
+      {plain:'  child: Image.asset(',
+        html:'  child: <span class="c2-type">Image</span>.asset('},
+      {plain:'    "assets/book_cover.jpg",',
+        html:'    <span class="c2-str">"assets/book_cover.jpg"</span>,'},
+      {plain:"    width: 100,",
+        html:"    width: <span class='c2-num'>100</span>,"},
+      {plain:"    height: 150,",
+        html:"    height: <span class='c2-num'>150</span>,"},
+      {plain:"    fit: BoxFit.cover,",
+        html:"    fit: <span class='c2-type'>BoxFit</span>.cover,",
+        after: guard(token, async () => {
+          if(captionEl) captionEl.textContent = 'ClipRRect( Image.asset(…) )';
+          await fadePhone(phoneEl, imageClipped);
+        })},
+      {plain:"  ),", html:"  ),"},
+      {plain:")", html:")"},
+      {plain:"", html:"&nbsp;", pause:280},
+
+      // 3. Buttons
+      {plain:"// ── 3. Buttons (actions) ────────────────────",
+        html:"<span class='c2-cmt'>// ── 3. Buttons (actions) ────────────────────</span>"},
+      {plain:"OutlinedButton(",
+        html:"<span class='c2-type'>OutlinedButton</span>("},
+      {plain:"  onPressed: () {},",
+        html:"  onPressed: () {},"},
+      {plain:"  style: OutlinedButton.styleFrom(",
+        html:"  style: <span class='c2-type'>OutlinedButton</span>.styleFrom("},
+      {plain:"    foregroundColor: Color(0xFFFFB3B1),",
+        html:"    foregroundColor: <span class='c2-type'>Color</span>(<span class='c2-num'>0xFFFFB3B1</span>),"},
+      {plain:"    side: BorderSide(",
+        html:"    side: <span class='c2-type'>BorderSide</span>("},
+      {plain:"      color: Color(0xFFFFB3B1).withValues(alpha: 0.5),",
+        html:"      color: <span class='c2-type'>Color</span>(<span class='c2-num'>0xFFFFB3B1</span>).withValues(alpha: <span class='c2-num'>0.5</span>),"},
+      {plain:"    ),", html:"    ),"},
+      {plain:"  ),", html:"  ),"},
+      {plain:'  child: const Text("Editions"),',
+        html:'  child: <span class="c2-kw">const</span> <span class="c2-type">Text</span>(<span class="c2-str">"Editions"</span>),',
+        after: guard(token, async () => {
+          if(captionEl) captionEl.textContent = 'OutlinedButton( "Editions" )';
+          await fadePhone(phoneEl, btnOutlined);
+        })},
+      {plain:")", html:")"},
+      {plain:"", html:"&nbsp;", pause:240},
+      {plain:"FilledButton(",
+        html:"<span class='c2-type'>FilledButton</span>("},
+      {plain:"  onPressed: () {},",
+        html:"  onPressed: () {},"},
+      {plain:"  style: FilledButton.styleFrom(",
+        html:"  style: <span class='c2-type'>FilledButton</span>.styleFrom("},
+      {plain:"    backgroundColor: Color(0xFFFFB3B1),",
+        html:"    backgroundColor: <span class='c2-type'>Color</span>(<span class='c2-num'>0xFFFFB3B1</span>),"},
+      {plain:"    foregroundColor: Color(0xFF630C16),",
+        html:"    foregroundColor: <span class='c2-type'>Color</span>(<span class='c2-num'>0xFF630C16</span>),"},
+      {plain:"  ),", html:"  ),"},
+      {plain:'  child: const Text("Add to Bookshelf"),',
+        html:'  child: <span class="c2-kw">const</span> <span class="c2-type">Text</span>(<span class="c2-str">"Add to Bookshelf"</span>),',
+        after: guard(token, async () => {
+          if(captionEl) captionEl.textContent = 'FilledButton( "Add to Bookshelf" )';
+          await fadePhone(phoneEl, btnFilled);
+        })},
+      {plain:")", html:")"},
+    ];
+    await typeScript('ch2-code-icon', lines, 15, token);
+  }
+
+
+
+  /* demo-rowcol: Row, Column & Card composition */
+  async function playDemoRowCol(token){
+    const codeEl = document.getElementById('ch2-code-rowcol');
+    const phoneEl = document.getElementById('ch2-phone-rowcol');
+    const captionEl = document.getElementById('ch2-caption-rowcol');
+    if(!codeEl || !phoneEl) return;
+    phoneEl.style.opacity = 1;
+    phoneEl.innerHTML = '';
+
+    // Step 1: Single MetaStat Column
+    const stateColMeta = '<div class="c2ph-topleft" style="padding-top:12px;">' +
+      '<div style="display:flex; flex-direction:column; gap:2px;">' +
+        '<span style="font-family:var(--font-ui); font-size:16px; font-weight:700; color:#E5E2E1;">12</span>' +
+        '<span style="font-family:var(--font-ui); font-size:11px; color:#DDC0BF;">editions</span>' +
+      '</div>' +
+    '</div>';
+
+    // Step 2: MetaStats in a Row
+    const stateRowMeta = '<div class="c2ph-topleft" style="padding-top:12px;">' +
+      '<div style="display:flex; align-items:center; gap:12px;">' +
+        '<div style="display:flex; flex-direction:column; gap:1px;">' +
+          '<span style="font-family:var(--font-ui); font-size:13px; font-weight:700; color:#E5E2E1;">12</span>' +
+          '<span style="font-family:var(--font-ui); font-size:9.5px; color:#DDC0BF;">editions</span>' +
+        '</div>' +
+        '<span style="width:3.5px; height:3.5px; border-radius:50%; background:#775A58; flex-shrink:0;"></span>' +
+        '<div style="display:flex; flex-direction:column; gap:1px;">' +
+          '<span style="font-family:var(--font-ui); font-size:13px; font-weight:700; color:#E5E2E1;">384</span>' +
+          '<span style="font-family:var(--font-ui); font-size:9.5px; color:#DDC0BF;">pages</span>' +
+        '</div>' +
+        '<span style="width:3.5px; height:3.5px; border-radius:50%; background:#775A58; flex-shrink:0;"></span>' +
+        '<div style="display:flex; flex-direction:column; gap:1px;">' +
+          '<span style="font-family:var(--font-ui); font-size:13px; font-weight:700; color:#E5E2E1;">1987</span>' +
+          '<span style="font-family:var(--font-ui); font-size:9.5px; color:#DDC0BF;">year</span>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+
+    // Step 3: Composed SearchCardDetails Column
+    const stateColDetails = '<div class="c2ph-topleft" style="padding-top:8px;">' +
+      '<div style="display:flex; flex-direction:column; gap:4px; width:100%;">' +
+        '<span style="font-family:var(--font-ui); font-size:12.5px; font-weight:700; color:#E5E2E1; line-height:1.2;">Norwegian Wood</span>' +
+        '<span style="font-family:var(--font-ui); font-size:9.5px; color:#DDC0BF;">Haruki Murakami</span>' +
+        '<div style="display:flex; align-items:center; gap:2.5px; margin-top:2px;">' +
+          '<svg viewBox="0 0 24 24" style="width:10px;height:10px;fill:#FFB3B1;stroke:#FFB3B1;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>' +
+          '<svg viewBox="0 0 24 24" style="width:10px;height:10px;fill:#FFB3B1;stroke:#FFB3B1;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>' +
+          '<svg viewBox="0 0 24 24" style="width:10px;height:10px;fill:#FFB3B1;stroke:#FFB3B1;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>' +
+          '<svg viewBox="0 0 24 24" style="width:10px;height:10px;fill:#FFB3B1;stroke:#FFB3B1;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>' +
+          '<svg viewBox="0 0 24 24" style="width:10px;height:10px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="none" stroke="#FFB3B1" stroke-width="1.5"/><path d="M12 2v15.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFB3B1"/></svg>' +
+          '<span style="font-family:var(--font-ui); font-size:9px; color:#DDC0BF; margin-left:3px;">4.5</span>' +
+        '</div>' +
+        '<div style="height:1px; background:rgba(86,66,65,0.6); margin:6px 0;"></div>' +
+        '<div style="display:flex; align-items:center; gap:8px;">' +
+          '<div style="display:flex; flex-direction:column;"><span style="font-family:var(--font-ui); font-size:10px; font-weight:700; color:#E5E2E1;">12</span><span style="font-family:var(--font-ui); font-size:7.5px; color:#DDC0BF;">editions</span></div>' +
+          '<span style="width:3px; height:3px; border-radius:50%; background:#775A58; flex-shrink:0;"></span>' +
+          '<div style="display:flex; flex-direction:column;"><span style="font-family:var(--font-ui); font-size:10px; font-weight:700; color:#E5E2E1;">384</span><span style="font-family:var(--font-ui); font-size:7.5px; color:#DDC0BF;">pages</span></div>' +
+          '<span style="width:3px; height:3px; border-radius:50%; background:#775A58; flex-shrink:0;"></span>' +
+          '<div style="display:flex; flex-direction:column;"><span style="font-family:var(--font-ui); font-size:10px; font-weight:700; color:#E5E2E1;">1987</span><span style="font-family:var(--font-ui); font-size:7.5px; color:#DDC0BF;">year</span></div>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+
+    // Step 4: Full Assembled SearchResultCard
+    const stateCardFull = '<div class="c2ph-topleft" style="padding-top:2px;">' +
+      '<div style="background:#201F1F; border-radius:8px; padding:12px; display:flex; flex-direction:column; gap:10px; width:100%; box-sizing:border-box;">' +
+        '<div style="display:flex; gap:10px; align-items:flex-start;">' +
+          '<img src="assets/book_cover.jpg" style="width:52px; height:78px; object-fit:cover; border-radius:6px; flex-shrink:0;" />' +
+          '<div style="flex:1; display:flex; flex-direction:column; gap:2px; min-width:0;">' +
+            '<span style="font-family:var(--font-ui); font-size:11px; font-weight:700; color:#E5E2E1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; line-height:1.25;">Norwegian Wood</span>' +
+            '<span style="font-family:var(--font-ui); font-size:8.5px; color:#DDC0BF; line-height:1.2;">Haruki Murakami</span>' +
+            '<div style="display:flex; align-items:center; gap:2px; margin-top:2px;">' +
+              '<svg viewBox="0 0 24 24" style="width:9px;height:9px;fill:#FFB3B1;stroke:#FFB3B1;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>' +
+              '<svg viewBox="0 0 24 24" style="width:9px;height:9px;fill:#FFB3B1;stroke:#FFB3B1;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>' +
+              '<svg viewBox="0 0 24 24" style="width:9px;height:9px;fill:#FFB3B1;stroke:#FFB3B1;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>' +
+              '<svg viewBox="0 0 24 24" style="width:9px;height:9px;fill:#FFB3B1;stroke:#FFB3B1;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>' +
+              '<svg viewBox="0 0 24 24" style="width:9px;height:9px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="none" stroke="#FFB3B1" stroke-width="1.5"/><path d="M12 2v15.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFB3B1"/></svg>' +
+              '<span style="font-family:var(--font-ui); font-size:8px; font-weight:600; color:#DDC0BF; margin-left:3px;">4.5</span>' +
+            '</div>' +
+            '<div style="height:1px; background:rgba(86,66,65,0.6); margin:5px 0;"></div>' +
+            '<div style="display:flex; align-items:center; justify-content:space-between; width:100%;">' +
+              '<div style="display:flex; flex-direction:column;"><span style="font-family:var(--font-ui); font-size:9px; font-weight:700; color:#E5E2E1;">12</span><span style="font-family:var(--font-ui); font-size:7px; color:#DDC0BF;">editions</span></div>' +
+              '<span style="width:3px; height:3px; border-radius:50%; background:#775A58; flex-shrink:0;"></span>' +
+              '<div style="display:flex; flex-direction:column;"><span style="font-family:var(--font-ui); font-size:9px; font-weight:700; color:#E5E2E1;">384</span><span style="font-family:var(--font-ui); font-size:7px; color:#DDC0BF;">pages</span></div>' +
+              '<span style="width:3px; height:3px; border-radius:50%; background:#775A58; flex-shrink:0;"></span>' +
+              '<div style="display:flex; flex-direction:column;"><span style="font-family:var(--font-ui); font-size:9px; font-weight:700; color:#E5E2E1;">1987</span><span style="font-family:var(--font-ui); font-size:7px; color:#DDC0BF;">year</span></div>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div style="display:flex; gap:8px; width:100%; margin-top:2px;">' +
+          '<button style="flex:1; background:transparent; border:1px solid rgba(255,179,177,0.5); color:#FFB3B1; border-radius:5px; padding:6px 0; font-family:var(--font-ui); font-size:8.5px; font-weight:600; cursor:pointer; text-align:center;">Editions</button>' +
+          '<button style="flex:2; background:#FFB3B1; border:none; color:#630C16; border-radius:5px; padding:6px 0; font-family:var(--font-ui); font-size:8.5px; font-weight:700; cursor:pointer; text-align:center;">Add to Bookshelf</button>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+
+    const lines = [
+      // 1. MetaStat Column
+      {plain:"// ── 1. Column (_MetaStat) ──────────────────",
+        html:"<span class='c2-cmt'>// ── 1. Column (_MetaStat) ──────────────────</span>"},
+      {plain:"Column(",
+        html:"<span class='c2-type'>Column</span>("},
+      {plain:"  crossAxisAlignment: CrossAxisAlignment.start,",
+        html:"  crossAxisAlignment: <span class='c2-type'>CrossAxisAlignment</span>.start,"},
+      {plain:"  children: [",
+        html:"  children: ["},
+      {plain:'    Text("12", style: TextStyle(fontWeight: FontWeight.bold)),',
+        html:'    <span class="c2-type">Text</span>(<span class="c2-str">"12"</span>, style: <span class="c2-type">TextStyle</span>(fontWeight: <span class="c2-type">FontWeight</span>.bold)),'},
+      {plain:'    Text("editions", style: TextStyle(color: Color(0xFFDDC0BF))),',
+        html:'    <span class="c2-type">Text</span>(<span class="c2-str">"editions"</span>, style: <span class="c2-type">TextStyle</span>(color: <span class="c2-type">Color</span>(<span class="c2-num">0xFFDDC0BF</span>))),',
+        after: guard(token, async () => {
+          if(captionEl) captionEl.textContent = 'Column( Text("12"), Text("editions") )';
+          await fadePhone(phoneEl, stateColMeta);
+        })},
+      {plain:"  ],", html:"  ],"},
+      {plain:")", html:")"},
+      {plain:"", html:"&nbsp;", pause:280},
+
+      // 2. MetaStats in a Row
+      {plain:"// ── 2. Row (metadata statistics) ───────────",
+        html:"<span class='c2-cmt'>// ── 2. Row (metadata statistics) ───────────</span>"},
+      {plain:"Row(",
+        html:"<span class='c2-type'>Row</span>("},
+      {plain:"  children: [",
+        html:"  children: ["},
+      {plain:'    _MetaStat(value: "12", label: "editions"),',
+        html:'    <span class="c2-type">_MetaStat</span>(value: <span class="c2-str">"12"</span>, label: <span class="c2-str">"editions"</span>),'},
+      {plain:"    const _Dot(),",
+        html:"    <span class='c2-kw'>const</span> <span class='c2-type'>_Dot</span>(),"},
+      {plain:'    _MetaStat(value: "384", label: "pages"),',
+        html:'    <span class="c2-type">_MetaStat</span>(value: <span class="c2-str">"384"</span>, label: <span class="c2-str">"pages"</span>),'},
+      {plain:"    const _Dot(),",
+        html:"    <span class='c2-kw'>const</span> <span class='c2-type'>_Dot</span>(),"},
+      {plain:'    _MetaStat(value: "1987", label: "year"),',
+        html:'    <span class="c2-type">_MetaStat</span>(value: <span class="c2-str">"1987"</span>, label: <span class="c2-str">"year"</span>),',
+        after: guard(token, async () => {
+          if(captionEl) captionEl.textContent = 'Row( _MetaStat, _Dot, … )';
+          await fadePhone(phoneEl, stateRowMeta);
+        })},
+      {plain:"  ],", html:"  ],"},
+      {plain:")", html:")"},
+      {plain:"", html:"&nbsp;", pause:280},
+
+      // 3. Composed SearchCardDetails Column
+      {plain:"// ── 3. SearchCardDetails (Column) ───────────",
+        html:"<span class='c2-cmt'>// ── 3. SearchCardDetails (Column) ───────────</span>"},
+      {plain:"Column(",
+        html:"<span class='c2-type'>Column</span>("},
+      {plain:"  crossAxisAlignment: CrossAxisAlignment.start,",
+        html:"  crossAxisAlignment: <span class='c2-type'>CrossAxisAlignment</span>.start,"},
+      {plain:"  children: [",
+        html:"  children: ["},
+      {plain:'    Text("Norwegian Wood", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),',
+        html:'    <span class="c2-type">Text</span>(<span class="c2-str">"Norwegian Wood"</span>, style: <span class="c2-type">TextStyle</span>(fontSize: <span class="c2-num">16</span>, fontWeight: <span class="c2-type">FontWeight</span>.bold)),'},
+      {plain:'    Text("Haruki Murakami", style: TextStyle(color: Color(0xFFDDC0BF))),',
+        html:'    <span class="c2-type">Text</span>(<span class="c2-str">"Haruki Murakami"</span>, style: <span class="c2-type">TextStyle</span>(color: <span class="c2-type">Color</span>(<span class="c2-num">0xFFDDC0BF</span>))),'},
+      {plain:"    const SizedBox(height: 8),",
+        html:"    <span class='c2-kw'>const</span> <span class='c2-type'>SizedBox</span>(height: <span class='c2-num'>8</span>),"},
+      {plain:"    Row(children: [",
+        html:"    <span class='c2-type'>Row</span>(children: ["},
+      {plain:"      Icon(Icons.star_rounded, size: 14, color: Color(0xFFFFB3B1)),",
+        html:"      <span class='c2-type'>Icon</span>(<span class='c2-type'>Icons</span>.star_rounded, size: <span class='c2-num'>14</span>, color: <span class='c2-type'>Color</span>(<span class='c2-num'>0xFFFFB3B1</span>)),"},
+      {plain:"      Icon(Icons.star_rounded, size: 14, color: Color(0xFFFFB3B1)),",
+        html:"      <span class='c2-type'>Icon</span>(<span class='c2-type'>Icons</span>.star_rounded, size: <span class='c2-num'>14</span>, color: <span class='c2-type'>Color</span>(<span class='c2-num'>0xFFFFB3B1</span>)),"},
+      {plain:"      Icon(Icons.star_rounded, size: 14, color: Color(0xFFFFB3B1)),",
+        html:"      <span class='c2-type'>Icon</span>(<span class='c2-type'>Icons</span>.star_rounded, size: <span class='c2-num'>14</span>, color: <span class='c2-type'>Color</span>(<span class='c2-num'>0xFFFFB3B1</span>)),"},
+      {plain:"      Icon(Icons.star_rounded, size: 14, color: Color(0xFFFFB3B1)),",
+        html:"      <span class='c2-type'>Icon</span>(<span class='c2-type'>Icons</span>.star_rounded, size: <span class='c2-num'>14</span>, color: <span class='c2-type'>Color</span>(<span class='c2-num'>0xFFFFB3B1</span>)),"},
+      {plain:"      Icon(Icons.star_half_rounded, size: 14, color: Color(0xFFFFB3B1)),",
+        html:"      <span class='c2-type'>Icon</span>(<span class='c2-type'>Icons</span>.star_half_rounded, size: <span class='c2-num'>14</span>, color: <span class='c2-type'>Color</span>(<span class='c2-num'>0xFFFFB3B1</span>)),"},
+      {plain:'      const SizedBox(width: 4), Text("4.5", style: TextStyle(color: Color(0xFFDDC0BF))),',
+        html:'      <span class="c2-kw">const</span> <span class="c2-type">SizedBox</span>(width: <span class="c2-num">4</span>), <span class="c2-type">Text</span>(<span class="c2-str">"4.5"</span>, style: <span class="c2-type">TextStyle</span>(color: <span class="c2-type">Color</span>(<span class="c2-num">0xFFDDC0BF</span>))),'},
+      {plain:"    ]),", html:"    ]),"},
+      {plain:"    Divider(color: Color(0xFF564241), height: 1),",
+        html:"    <span class='c2-type'>Divider</span>(color: <span class='c2-type'>Color</span>(<span class='c2-num'>0xFF564241</span>), height: <span class='c2-num'>1</span>),"},
+      {plain:"    Row(children: [ ...metaStats ]),",
+        html:"    <span class='c2-type'>Row</span>(children: [ ...metaStats ]),",
+        after: guard(token, async () => {
+          if(captionEl) captionEl.textContent = 'SearchCardDetails (Column)';
+          await fadePhone(phoneEl, stateColDetails);
+        })},
+      {plain:"  ],", html:"  ],"},
+      {plain:")", html:")"},
+      {plain:"", html:"&nbsp;", pause:280},
+
+      // 4. Assembled SearchResultCard
+      {plain:"// ── 4. SearchResultCard (Container) ──────────",
+        html:"<span class='c2-cmt'>// ── 4. SearchResultCard (Container) ──────────</span>"},
+      {plain:"Container(",
+        html:"<span class='c2-type'>Container</span>("},
+      {plain:"  decoration: BoxDecoration(",
+        html:"  decoration: <span class='c2-type'>BoxDecoration</span>("},
+      {plain:"    color: Color(0xFF201F1F),",
+        html:"    color: <span class='c2-type'>Color</span>(<span class='c2-num'>0xFF201F1F</span>),"},
+      {plain:"    borderRadius: BorderRadius.circular(12),",
+        html:"    borderRadius: <span class='c2-type'>BorderRadius</span>.circular(<span class='c2-num'>12</span>),"},
+      {plain:"  ),", html:"  ),"},
+      {plain:"  child: Padding(",
+        html:"  child: <span class='c2-type'>Padding</span>("},
+      {plain:"    padding: const EdgeInsets.all(16),",
+        html:"    padding: <span class='c2-kw'>const</span> <span class='c2-type'>EdgeInsets</span>.all(<span class='c2-num'>16</span>),"},
+      {plain:"    child: Column(",
+        html:"    child: <span class='c2-type'>Column</span>("},
+      {plain:"      crossAxisAlignment: CrossAxisAlignment.start,",
+        html:"      crossAxisAlignment: <span class='c2-type'>CrossAxisAlignment</span>.start,"},
+      {plain:"      children: [",
+        html:"      children: ["},
+      {plain:"        Row(",
+        html:"        <span class='c2-type'>Row</span>("},
+      {plain:"          crossAxisAlignment: CrossAxisAlignment.start,",
+        html:"          crossAxisAlignment: <span class='c2-type'>CrossAxisAlignment</span>.start,"},
+      {plain:"          children: [",
+        html:"          children: ["},
+      {plain:'            SearchCardCover(imageUrl: "assets/book_cover.jpg"),',
+        html:'            <span class="c2-type">SearchCardCover</span>(imageUrl: <span class="c2-str">"assets/book_cover.jpg"</span>),'},
+      {plain:"            const SizedBox(width: 14),",
+        html:"            <span class='c2-kw'>const</span> <span class='c2-type'>SizedBox</span>(width: <span class='c2-num'>14</span>),"},
+      {plain:"            Expanded(child: SearchCardDetails()),",
+        html:"            <span class='c2-type'>Expanded</span>(child: <span class='c2-type'>SearchCardDetails</span>()),"},
+      {plain:"          ],", html:"          ],"},
+      {plain:"        ),", html:"        ),"},
+      {plain:"        const SizedBox(height: 14),",
+        html:"        <span class='c2-kw'>const</span> <span class='c2-type'>SizedBox</span>(height: <span class='c2-num'>14</span>),"},
+      {plain:"        SearchCardActions(),",
+        html:"        <span class='c2-type'>SearchCardActions</span>(),",
+        after: guard(token, async () => {
+          if(captionEl) captionEl.textContent = 'SearchResultCard (Assembled)';
+          await fadePhone(phoneEl, stateCardFull);
+        })},
+      {plain:"      ],", html:"      ],"},
+      {plain:"    ),", html:"    ),"},
+      {plain:"  ),", html:"  ),"},
+      {plain:")", html:")"},
+    ];
+    await typeScript('ch2-code-rowcol', lines, 13, token);
+  }
+
+
+  /* demo-screen: full search screen */
+  async function playDemoScreen(token){
+    const codeEl = document.getElementById('ch2-code-screen');
+    const phoneEl = document.getElementById('ch2-phone-screen');
+    const captionEl = document.getElementById('ch2-caption-screen');
+    if(!codeEl || !phoneEl) return;
+    phoneEl.style.opacity = 1;
+    phoneEl.innerHTML = '';
+
+    // Step 1: Header
+    const stateHeader = '<div class="c2ph-topleft" style="padding-top:4px; display:flex; flex-direction:column; gap:2px;">' +
+      '<span style="font-family:var(--font-ui); font-size:14px; font-weight:700; color:#E5E2E1;">Discover</span>' +
+      '<span style="font-family:var(--font-ui); font-size:9px; color:#DDC0BF;">Find books, authors, and characters</span>' +
+    '</div>';
+
+    // Step 2: Search Bar
+    const stateBar = '<div class="c2ph-topleft" style="padding-top:4px; display:flex; flex-direction:column; gap:8px; width:100%; box-sizing:border-box;">' +
+      '<div style="display:flex; flex-direction:column; gap:2px;">' +
+        '<span style="font-family:var(--font-ui); font-size:14px; font-weight:700; color:#E5E2E1;">Discover</span>' +
+        '<span style="font-family:var(--font-ui); font-size:9px; color:#DDC0BF;">Find books, authors, and characters</span>' +
+      '</div>' +
+      '<div style="background:#2A2A2A; border-radius:6px; padding:7px 9px; display:flex; align-items:center; gap:6px; width:100%; box-sizing:border-box;">' +
+        '<svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:#DDC0BF;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
+        '<span style="font-family:var(--font-ui); font-size:8.5px; color:#DDC0BF; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Search books, authors, characters…</span>' +
+      '</div>' +
+    '</div>';
+
+    // Step 3: Results Header
+    const stateResultsHdr = '<div class="c2ph-topleft" style="padding-top:4px; display:flex; flex-direction:column; gap:8px; width:100%; box-sizing:border-box;">' +
+      '<div style="display:flex; flex-direction:column; gap:2px;">' +
+        '<span style="font-family:var(--font-ui); font-size:14px; font-weight:700; color:#E5E2E1;">Discover</span>' +
+        '<span style="font-family:var(--font-ui); font-size:9px; color:#DDC0BF;">Find books, authors, and characters</span>' +
+      '</div>' +
+      '<div style="background:#2A2A2A; border-radius:6px; padding:7px 9px; display:flex; align-items:center; gap:6px; width:100%; box-sizing:border-box;">' +
+        '<svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:#DDC0BF;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
+        '<span style="font-family:var(--font-ui); font-size:8.5px; color:#DDC0BF; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Search books, authors, characters…</span>' +
+      '</div>' +
+      '<div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2px;">' +
+        '<span style="font-family:var(--font-ui); font-size:10.5px; font-weight:700; color:#E5E2E1;">Results</span>' +
+        '<span style="font-family:var(--font-ui); font-size:8.5px; color:#DDC0BF;">13 found</span>' +
+      '</div>' +
+    '</div>';
+
+    // Step 4: Full Assembled Screen with SearchResultCard list
+    const stateScreenFull = '<div class="c2ph-topleft" style="padding-top:4px; display:flex; flex-direction:column; gap:8px; width:100%; box-sizing:border-box;">' +
+      '<div style="display:flex; flex-direction:column; gap:2px;">' +
+        '<span style="font-family:var(--font-ui); font-size:14px; font-weight:700; color:#E5E2E1;">Discover</span>' +
+        '<span style="font-family:var(--font-ui); font-size:9px; color:#DDC0BF;">Find books, authors, and characters</span>' +
+      '</div>' +
+      '<div style="background:#2A2A2A; border-radius:6px; padding:7px 9px; display:flex; align-items:center; gap:6px; width:100%; box-sizing:border-box;">' +
+        '<svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:#DDC0BF;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
+        '<span style="font-family:var(--font-ui); font-size:8.5px; color:#DDC0BF; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Search books, authors, characters…</span>' +
+      '</div>' +
+      '<div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2px;">' +
+        '<span style="font-family:var(--font-ui); font-size:10.5px; font-weight:700; color:#E5E2E1;">Results</span>' +
+        '<span style="font-family:var(--font-ui); font-size:8.5px; color:#DDC0BF;">13 found</span>' +
+      '</div>' +
+      '<div style="background:#201F1F; border-radius:8px; padding:10px; display:flex; flex-direction:column; gap:8px; width:100%; box-sizing:border-box;">' +
+        '<div style="display:flex; gap:8px; align-items:flex-start;">' +
+          '<img src="assets/book_cover.jpg" style="width:44px; height:66px; object-fit:cover; border-radius:5px; flex-shrink:0;" />' +
+          '<div style="flex:1; display:flex; flex-direction:column; gap:1.5px; min-width:0;">' +
+            '<span style="font-family:var(--font-ui); font-size:10px; font-weight:700; color:#E5E2E1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; line-height:1.2;">Norwegian Wood</span>' +
+            '<span style="font-family:var(--font-ui); font-size:8px; color:#DDC0BF; line-height:1.2;">Haruki Murakami</span>' +
+            '<div style="display:flex; align-items:center; gap:1.5px; margin-top:1px;">' +
+              '<svg viewBox="0 0 24 24" style="width:8px;height:8px;fill:#FFB3B1;stroke:#FFB3B1;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>' +
+              '<svg viewBox="0 0 24 24" style="width:8px;height:8px;fill:#FFB3B1;stroke:#FFB3B1;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>' +
+              '<svg viewBox="0 0 24 24" style="width:8px;height:8px;fill:#FFB3B1;stroke:#FFB3B1;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>' +
+              '<svg viewBox="0 0 24 24" style="width:8px;height:8px;fill:#FFB3B1;stroke:#FFB3B1;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>' +
+              '<svg viewBox="0 0 24 24" style="width:8px;height:8px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="none" stroke="#FFB3B1" stroke-width="1.5"/><path d="M12 2v15.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFB3B1"/></svg>' +
+              '<span style="font-family:var(--font-ui); font-size:7.5px; font-weight:600; color:#DDC0BF; margin-left:2px;">4.5</span>' +
+            '</div>' +
+            '<div style="height:1px; background:rgba(86,66,65,0.6); margin:4px 0;"></div>' +
+            '<div style="display:flex; align-items:center; justify-content:space-between; width:100%;">' +
+              '<div style="display:flex; flex-direction:column;"><span style="font-family:var(--font-ui); font-size:8px; font-weight:700; color:#E5E2E1;">12</span><span style="font-family:var(--font-ui); font-size:6px; color:#DDC0BF;">editions</span></div>' +
+              '<span style="width:2.5px; height:2.5px; border-radius:50%; background:#775A58; flex-shrink:0;"></span>' +
+              '<div style="display:flex; flex-direction:column;"><span style="font-family:var(--font-ui); font-size:8px; font-weight:700; color:#E5E2E1;">384</span><span style="font-family:var(--font-ui); font-size:6px; color:#DDC0BF;">pages</span></div>' +
+              '<span style="width:2.5px; height:2.5px; border-radius:50%; background:#775A58; flex-shrink:0;"></span>' +
+              '<div style="display:flex; flex-direction:column;"><span style="font-family:var(--font-ui); font-size:8px; font-weight:700; color:#E5E2E1;">1987</span><span style="font-family:var(--font-ui); font-size:6px; color:#DDC0BF;">year</span></div>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div style="display:flex; gap:6px; width:100%; margin-top:1px;">' +
+          '<button style="flex:1; background:transparent; border:1px solid rgba(255,179,177,0.5); color:#FFB3B1; border-radius:4px; padding:5px 0; font-family:var(--font-ui); font-size:8px; font-weight:600; cursor:pointer; text-align:center;">Editions</button>' +
+          '<button style="flex:2; background:#FFB3B1; border:none; color:#630C16; border-radius:4px; padding:5px 0; font-family:var(--font-ui); font-size:8px; font-weight:700; cursor:pointer; text-align:center;">Add to Bookshelf</button>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+
+    const lines = [
+      // 1. Column + Header
+      {plain:"// ── Assembling SearchScreen ─────────────────",
+        html:"<span class='c2-cmt'>// ── Assembling SearchScreen ─────────────────</span>"},
+      {plain:"Column(",
+        html:"<span class='c2-type'>Column</span>("},
+      {plain:"  crossAxisAlignment: CrossAxisAlignment.start,",
+        html:"  crossAxisAlignment: <span class='c2-type'>CrossAxisAlignment</span>.start,"},
+      {plain:"  children: [",
+        html:"  children: ["},
+      {plain:'    Text("Discover", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),',
+        html:'    <span class="c2-type">Text</span>(<span class="c2-str">"Discover"</span>, style: <span class="c2-type">TextStyle</span>(fontSize: <span class="c2-num">22</span>, fontWeight: <span class="c2-type">FontWeight</span>.bold)),'},
+      {plain:'    Text("Find books, authors...", style: TextStyle(color: Color(0xFFDDC0BF))),',
+        html:'    <span class="c2-type">Text</span>(<span class="c2-str">"Find books, authors..."</span>, style: <span class="c2-type">TextStyle</span>(color: <span class="c2-type">Color</span>(<span class="c2-num">0xFFDDC0BF</span>))),',
+        after: guard(token, async () => {
+          if(captionEl) captionEl.textContent = 'Header: Text("Discover")';
+          await fadePhone(phoneEl, stateHeader);
+        })},
+      {plain:"", html:"&nbsp;", pause:280},
+
+      // 2. SearchInputBar
+      {plain:"    const SizedBox(height: 16),",
+        html:"    <span class='c2-kw'>const</span> <span class='c2-type'>SizedBox</span>(height: <span class='c2-num'>16</span>),"},
+      {plain:"    const SearchInputBar(),",
+        html:"    <span class='c2-kw'>const</span> <span class='c2-type'>SearchInputBar</span>(),",
+        after: guard(token, async () => {
+          if(captionEl) captionEl.textContent = 'SearchInputBar()';
+          await fadePhone(phoneEl, stateBar);
+        })},
+      {plain:"", html:"&nbsp;", pause:280},
+
+      // 3. Results count row
+      {plain:"    const SizedBox(height: 20),",
+        html:"    <span class='c2-kw'>const</span> <span class='c2-type'>SizedBox</span>(height: <span class='c2-num'>20</span>),"},
+      {plain:"    Row(",
+        html:"    <span class='c2-type'>Row</span>("},
+      {plain:"      mainAxisAlignment: MainAxisAlignment.spaceBetween,",
+        html:"      mainAxisAlignment: <span class='c2-type'>MainAxisAlignment</span>.spaceBetween,"},
+      {plain:"      children: [",
+        html:"      children: ["},
+      {plain:'        Text("Results", style: TextStyle(fontWeight: FontWeight.bold)),',
+        html:'        <span class="c2-type">Text</span>(<span class="c2-str">"Results"</span>, style: <span class="c2-type">TextStyle</span>(fontWeight: <span class="c2-type">FontWeight</span>.bold)),'},
+      {plain:'        Text("13 found", style: TextStyle(color: Color(0xFFDDC0BF))),',
+        html:'        <span class="c2-type">Text</span>(<span class="c2-str">"13 found"</span>, style: <span class="c2-type">TextStyle</span>(color: <span class="c2-type">Color</span>(<span class="c2-num">0xFFDDC0BF</span>))),',
+        after: guard(token, async () => {
+          if(captionEl) captionEl.textContent = 'Results count Row';
+          await fadePhone(phoneEl, stateResultsHdr);
+        })},
+      {plain:"      ],", html:"      ],"},
+      {plain:"    ),", html:"    ),"},
+      {plain:"", html:"&nbsp;", pause:280},
+
+      // 4. Scrollable list of SearchResultCards
+      {plain:"    const SizedBox(height: 12),",
+        html:"    <span class='c2-kw'>const</span> <span class='c2-type'>SizedBox</span>(height: <span class='c2-num'>12</span>),"},
+      {plain:"    Expanded(",
+        html:"    <span class='c2-type'>Expanded</span>("},
+      {plain:"      child: ListView(",
+        html:"      child: <span class='c2-type'>ListView</span>("},
+      {plain:"        children: const [",
+        html:"        children: <span class='c2-kw'>const</span> ["},
+      {plain:"          SearchResultCard(),",
+        html:"          <span class='c2-type'>SearchResultCard</span>(),"},
+      {plain:"          SizedBox(height: 12),",
+        html:"          <span class='c2-type'>SizedBox</span>(height: <span class='c2-num'>12</span>),"},
+      {plain:"          SearchResultCard(),",
+        html:"          <span class='c2-type'>SearchResultCard</span>(),",
+        after: guard(token, async () => {
+          if(captionEl) captionEl.textContent = 'SearchScreen (Assembled)';
+          await fadePhone(phoneEl, stateScreenFull);
+        })},
+      {plain:"        ],", html:"        ],"},
+      {plain:"      ),", html:"      ),"},
+      {plain:"    ),", html:"    ),"},
+      {plain:"  ],", html:"  ],"},
+      {plain:")", html:")"},
+    ];
+    await typeScript('ch2-code-screen', lines, 13, token);
+  }
+
+  /* ── Public API ───────────────────────────────────────── */
+  const demoFns = {
+    'text':   playDemoText,
+    'icon':   playDemoIcon,
+    'rowcol': playDemoRowCol,
+    'screen': playDemoScreen,
+  };
+
+  window.runCh2Demo = function(name){
+    const token = ++ch2Token;
+    const fn = demoFns[name];
+    if(fn) fn(token);
+  };
+
+  /* Auto-play when a ch2 demo slide enters view */
+  window.ch2SlideAutoplay = function(slideId){
+    const map = {
+      'slide-ch2-3':'text',
+      'slide-ch2-4':'icon',
+      'slide-ch2-8':'rowcol',
+      'slide-ch2-10':'screen',
+    };
+    const demo = map[slideId];
+    if(demo) window.runCh2Demo(demo);
+  };
+})();
+</script>
+
+<!-- ════════════════════════════════════════════════════════
+     CH2 STYLES
+     ════════════════════════════════════════════════════════ -->
+<style>
+/* ── Typewriter cursor ──────────────────────────────────── */
+.ch2-cursor {
+  display: inline-block;
+  width: 6px; height: 1em;
+  background: var(--blue);
+  vertical-align: text-bottom;
+  margin-left: 1px;
+  animation: ch2-blink 1s steps(1) infinite;
+}
+@keyframes ch2-blink { 0%,49%{opacity:1;} 50%,100%{opacity:0;} }
+
+/* ── Code area ──────────────────────────────────────────── */
+.ch2-code-line {
+  white-space: pre;
+  font-family: var(--font-code);
+  font-size: clamp(11.5px, 1.05vw, 14px);
+  line-height: 1.75;
+  color: var(--t-primary);
+  min-height: 1.75em;
+}
+.ch2-replay {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-code);
+  font-size: clamp(10px, 0.85vw, 12px);
+  color: var(--t-muted);
+  background: transparent;
+  border: 1px solid var(--bdr-card);
+  border-radius: var(--r-pill);
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  margin-top: 10px;
+  flex-shrink: 0;
+  width: fit-content;
+  align-self: flex-start;
+}
+.ch2-replay:hover { color: var(--t-primary); border-color: var(--blue); }
+
+/* ── Syntax token colors ────────────────────────────────── */
+.c2-kw   { color: #FF6F91; }
+.c2-type { color: #F5C26B; }
+.c2-str  { color: #7EE2B8; }
+.c2-cmt  { color: var(--t-muted); font-style: italic; }
+.c2-num  { color: var(--blue); }
+
+/* ── Phone caption ──────────────────────────────────────── */
+.ph-caption {
+  font-family: var(--font-code);
+  font-size: clamp(9px, 0.82vw, 11.5px);
+  color: var(--t-muted);
+  margin-top: 6px;
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
+/* ── Phone screen backgrounds ───────────────────────────── */
+.pixel-screen.light {
+  background: #F4F5F8;
+}
+.pixel-screen.light .pixel-status-bar {
+  color: rgba(0,0,0,0.35);
+}
+
+.pixel-screen.dark-surface {
+  background: #131313;
+}
+.pixel-screen.dark-surface .pixel-status-bar {
+  color: rgba(255,255,255,0.45);
+}
+
+/* ── Phone UI helpers ───────────────────────────────────── */
+.c2ph-topleft {
+  position: absolute;
+  top: 36px; left: 14px; right: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  transition: opacity 0.2s ease;
+}
+.c2ph-text-sm {
+  font-family: var(--font-ui);
+  font-size: clamp(10px, 0.95vw, 13px);
+  color: #E5E2E1;
+}
+.c2ph-text-lg {
+  font-family: var(--font-ui);
+  font-size: clamp(14px, 1.35vw, 19px);
+  font-weight: 800;
+  color: #E5E2E1;
+  line-height: 1.2;
+}
+.c2ph-text-muted {
+  font-family: var(--font-ui);
+  font-size: clamp(9px, 0.82vw, 11.5px);
+  color: #DDC0BF;
+  line-height: 1.4;
+}
+.c2ph-field-bare {
+  display: flex; align-items: center; gap: 4px;
+  border-bottom: 1.5px solid #C5C9D5;
+  padding: 4px 0;
+}
+.c2ph-field-styled {
+  display: flex; align-items: center; gap: 5px;
+  background: #fff;
+  border-radius: 8px;
+  padding: clamp(4px,0.55vw,7px) clamp(5px,0.65vw,8px);
+  box-shadow: 0 2px 8px -4px rgba(0,0,0,0.12);
+}
+.c2ph-hint {
+  font-family: var(--font-ui);
+  font-size: clamp(7px, 0.7vw, 9.5px);
+  color: #B0B4C0;
+  flex: 1;
+}
+.c2ph-caret {
+  display: inline-block;
+  width: 1.5px; height: clamp(9px,1vw,12px);
+  background: var(--blue);
+  animation: cursor-blink 1s step-end infinite;
+  flex-shrink: 0;
+}
+.c2ph-chip {
+  padding: 2px 6px; border-radius: 20px;
+  font-family: var(--font-ui);
+  font-size: clamp(6px, 0.6vw, 8.5px);
+  font-weight: 600;
+  border: 1px solid #D5D8E0;
+  color: #8A8FA3;
+  white-space: nowrap;
+  background: #fff;
+}
+.c2ph-chip.active {
+  background: rgba(84,197,248,0.12);
+  color: #1E9DC9;
+  border-color: rgba(84,197,248,0.4);
+}
+.c2ph-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: clamp(6px,0.7vw,9px);
+  box-shadow: 0 3px 12px -6px rgba(0,0,0,0.15);
+}
+.c2ph-card-shell {
+  background: #fff;
+  border-radius: 8px;
+  height: clamp(60px,7vw,88px);
+  box-shadow: 0 3px 12px -6px rgba(0,0,0,0.15);
+}
+.c2ph-badge {
+  display: inline-block;
+  padding: 1px 5px;
+  background: rgba(84,197,248,0.12);
+  border-radius: 3px;
+  font-family: var(--font-ui);
+  font-size: clamp(5.5px,0.55vw,7.5px);
+  font-weight: 700;
+  color: #1E9DC9;
+  margin-bottom: 2px;
+}
+.c2ph-book-cover {
+  width: clamp(30px,3.4vw,44px);
+  height: clamp(46px,5.1vw,66px);
+  border-radius: 4px;
+  background: linear-gradient(150deg, #F5C26B, #E08A4B);
+  flex-shrink: 0;
+}
+.c2ph-card-title {
+  font-family: var(--font-ui);
+  font-size: clamp(7px,0.72vw,10px);
+  font-weight: 700;
+  color: #20222B;
+  line-height: 1.2;
+}
+.c2ph-card-sub {
+  font-family: var(--font-ui);
+  font-size: clamp(6px,0.6vw,8.5px);
+  color: #8A8FA3;
+}
+.c2ph-divider {
+  height: 1px;
+  background: #ECEDF2;
+  margin: 3px 0;
+}
+.c2ph-prog-row {
+  display: flex;
+  justify-content: space-between;
+}
+.c2ph-prog-label {
+  font-family: var(--font-ui);
+  font-size: clamp(5.5px,0.56vw,7.5px);
+  color: #B0B4C0;
+}
+.c2ph-prog-bar {
+  height: 3px;
+  background: #E4E6EE;
+  border-radius: 3px;
+  position: relative;
+  margin-top: 2px;
+}
+.c2ph-prog-fill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 68%;
+  background: #54C5F8;
+  border-radius: 3px;
+}
+.c2ph-meta-row {
+  display: flex; gap: 4px; align-items: center;
+}
+.c2ph-btn-filled {
+  background: #54C5F8; color: #fff;
+  border-radius: 5px;
+  padding: clamp(4px,0.5vw,7px) clamp(6px,0.7vw,10px);
+  font-family: var(--font-ui);
+  font-size: clamp(7px,0.7vw,10px);
+  font-weight: 700; text-align: center;
+  white-space: nowrap;
+}
+.c2ph-btn-outlined {
+  border: 1px solid #54C5F8; color: #1E9DC9;
+  background: transparent;
+  border-radius: 5px;
+  padding: clamp(4px,0.5vw,7px) clamp(6px,0.7vw,10px);
+  font-family: var(--font-ui);
+  font-size: clamp(7px,0.7vw,10px);
+  font-weight: 700; text-align: center;
+  white-space: nowrap;
+}
+.c2ph-btn-row { display:flex; gap:5px; align-items:center; }
+.c2ph-btn-row .c2ph-btn-outlined { flex:1; }
+.c2ph-btn-row .c2ph-btn-filled { flex:2; }
+
+/* ── Atom vocabulary grid (4 cols x 2 rows) ───────────────── */
+.ch2-atom-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(8px, 1vw, 12px);
+  width: 100%;
+}
+.ch2-atom {
+  background: var(--bg-surface);
+  border: 1px solid var(--bdr-card);
+  border-radius: var(--r-sm);
+  padding: clamp(12px, 1.4vh, 18px) clamp(6px, 0.7vw, 10px);
+  text-align: center;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.ch2-atom:hover {
+  border-color: var(--blue);
+  transform: translateY(-2px);
+}
+.ch2-atom .glyph {
+  font-size: clamp(18px, 1.8vw, 24px);
+  margin-bottom: 6px;
+  color: var(--orange);
+}
+.ch2-atom .label {
+  font-family: var(--font-code);
+  font-size: clamp(10.5px, 0.88vw, 12.5px);
+  color: var(--t-secondary);
+  font-weight: 500;
+}
+
+/* ── Slide layout for demo slides ───────────────────────── */
+.ch2-split {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: var(--gap);
+  width: 100%;
+  align-items: center;
+}
+.ch2-split-left {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1vw, 14px);
+}
+.ch2-split-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.ch2-code-win {
+  background: var(--bg-code);
+  border: 1px solid var(--bdr-subtle);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.ch2-code-win-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: clamp(6px,0.7vh,10px) clamp(10px,1vw,16px); flex-shrink: 0;
+  background: rgba(255,255,255,0.025);
+  border-bottom: 1px solid var(--bdr-subtle);
+}
+.ch2-code-body {
+  padding: clamp(14px,1.4vw,20px) clamp(16px,1.6vw,22px);
+  min-height: clamp(180px,18vw,260px);
+  max-height: clamp(280px,28vw,400px);
+  overflow-y: auto;
+}
+</style>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 2.1 — CH 2: CHAPTER OPENER
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch2-1" data-notes="Chapter 2 opener. 'A widget is just a function — it takes inputs and returns a visual output. Everything on screen is one of these eight words, or a combination of them.'">
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 2</div>
+    <span class="ch-title">ui widgets</span>
+  </div>
+
+  <div class="slide-body w48">
+    <!-- Left: Concept & Math Analogy -->
+    <div class="pane ch2-split-left" style="align-items:flex-start; padding-right: clamp(10px, 2vw, 24px);">
+      <div class="s d0"><p class="eyebrow">the building blocks</p></div>
+      <div class="s d1">
+        <h2 class="h2" style="font-size:clamp(32px, 3.8vw, 52px); line-height:1.08; margin-bottom:18px;">
+          A widget is just <em style="font-style:italic; color:var(--blue);">f(x)</em>
+        </h2>
+      </div>
+      <div class="s d2" style="display:flex; flex-direction:column; gap:16px;">
+        <p class="body-txt" style="font-size:clamp(16px, 1.35vw, 20px); line-height:1.6; color:var(--t-secondary);">
+          Grade-5 math: <strong style="color:var(--t-primary); font-family:var(--font-code); background:rgba(255,255,255,0.06); padding:3px 10px; border-radius:6px; border:1px solid var(--bdr-subtle); letter-spacing:0.02em;">f(x) = 2x + 3</strong>
+        </p>
+        <p class="body-txt" style="font-size:clamp(15px, 1.2vw, 18px); line-height:1.65; color:var(--t-secondary);">
+          Feed it a value, get an output back. A widget is the exact same idea — pass arguments into a constructor, get visual pixels painted on the screen.
+        </p>
+      </div>
+    </div>
+
+    <!-- Right: 2 rows x 4 columns vocabulary grid with both text headers -->
+    <div class="pane ch2-split-right" style="align-items:flex-start; width:100%;">
+      <div class="s d0">
+        <p class="eyebrow" style="margin-bottom:8px;">eight words you'll use constantly</p>
+      </div>
+      <div class="s d1" style="margin-bottom: clamp(12px, 1.6vh, 20px);">
+        <p style="font-size:clamp(15px, 1.3vw, 19px); color:var(--t-secondary); line-height:1.45; margin:0;">
+          Everything on screen is one of these, or a combination of them.
+        </p>
+      </div>
+      <div class="s d2" style="width:100%;">
+        <div class="ch2-atom-grid">
+          <div class="ch2-atom"><div class="glyph">Aa</div><div class="label">Text</div></div>
+          <div class="ch2-atom"><div class="glyph">★</div><div class="label">Icon</div></div>
+          <div class="ch2-atom"><div class="glyph">▧</div><div class="label">Image</div></div>
+          <div class="ch2-atom"><div class="glyph">▢</div><div class="label">Button</div></div>
+          <div class="ch2-atom"><div class="glyph">‸</div><div class="label">TextField</div></div>
+          <div class="ch2-atom"><div class="glyph">⋮</div><div class="label">Column</div></div>
+          <div class="ch2-atom"><div class="glyph">⋯</div><div class="label">Row</div></div>
+          <div class="ch2-atom"><div class="glyph">▤</div><div class="label">Card / List</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 2.2 — CH 2.2: THE CLASS CONTRACT (StatelessWidget)
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch2-2" data-notes="Chapter 2.2. The Widget Contract. 'Every widget in Flutter lives inside a StatelessWidget class. The build() method tells the framework what to paint. To keep our slides clean and focused, we'll zoom straight into what build() returns.'">
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 2</div>
+    <span class="ch-title">ui widgets: the class contract</span>
+  </div>
+
+  <div class="slide-body w48">
+    <!-- Left: Minimal, crisp presenter clues -->
+    <div class="pane ch2-split-left" style="align-items:flex-start; padding-right: clamp(10px, 2vw, 24px);">
+      <div class="s d0"><p class="eyebrow">the container rule</p></div>
+      <div class="s d1">
+        <h2 class="h2" style="font-size:clamp(30px, 3.6vw, 48px); line-height:1.1; margin-bottom:24px;">
+          Every widget lives in a <em style="font-style:italic; color:var(--blue);">class</em>.
+        </h2>
+      </div>
+      <div class="s d2" style="display:flex; flex-direction:column; gap:16px; width:100%;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span style="width:8px; height:8px; border-radius:50%; background:var(--orange); flex-shrink:0;"></span>
+          <span style="font-size:clamp(15px, 1.25vw, 19px); color:var(--t-primary);"><strong style="font-family:var(--font-code); color:var(--orange);">StatelessWidget</strong> — declares the component</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span style="width:8px; height:8px; border-radius:50%; background:var(--blue); flex-shrink:0;"></span>
+          <span style="font-size:clamp(15px, 1.25vw, 19px); color:var(--t-primary);"><strong style="font-family:var(--font-code); color:var(--blue);">build(context)</strong> — returns what gets painted</span>
+        </div>
+
+        <div style="margin-top:14px; display:inline-flex; align-items:center; gap:8px; padding:8px 14px; background:rgba(84,197,248,0.08); border-radius:20px; border:1px solid rgba(84,197,248,0.2); width:fit-content;">
+          <span style="font-size:12px;">⚡</span>
+          <span style="font-family:var(--font-code); font-size:clamp(11px, 0.9vw, 13px); color:var(--t-secondary);">Zooming into <code style="color:var(--orange);">return</code> for the rest of this chapter</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Complete real Dart file structure with exact indentation and return highlight -->
+    <div class="pane ch2-split-right" style="width:100%;">
+      <div class="ch2-code-win s d2" style="width:100%;">
+        <div class="ch2-code-win-bar">
+          <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+          <span class="win-fname">search_screen.dart</span><span class="win-lang">dart</span>
+        </div>
+        <div class="ch2-code-body" style="padding:16px 20px; font-size:clamp(11px, 1vw, 13px); line-height:1.65; font-family:var(--font-code); white-space:pre;"><div><span class="c2-kw">class</span> <span class="c2-type">SearchHeader</span> <span class="c2-kw">extends</span> <span class="c2-type">StatelessWidget</span> {</div><div>  <span class="c2-kw">const</span> <span class="c2-type">SearchHeader</span>({<span class="c2-kw">super</span>.key});</div><div>&nbsp;</div><div>  <span class="c2-kw">@override</span></div><div>  <span class="c2-type">Widget</span> <span class="c2-num">build</span>(<span class="c2-type">BuildContext</span> context) {</div><div style="background:rgba(84,197,248,0.12); margin:0 -20px; padding:0 20px; border-left:3px solid var(--blue);">    <span class="c2-kw">return</span> <span class="c2-type">Text</span>(</div><div style="background:rgba(84,197,248,0.12); margin:0 -20px; padding:0 20px; border-left:3px solid var(--blue);">      <span class="c2-str">"Discover"</span>,</div><div style="background:rgba(84,197,248,0.12); margin:0 -20px; padding:0 20px; border-left:3px solid var(--blue);">      style: <span class="c2-type">TextStyle</span>(</div><div style="background:rgba(84,197,248,0.12); margin:0 -20px; padding:0 20px; border-left:3px solid var(--blue);">        fontSize: <span class="c2-num">28</span>,</div><div style="background:rgba(84,197,248,0.12); margin:0 -20px; padding:0 20px; border-left:3px solid var(--blue);">        fontWeight: <span class="c2-type">FontWeight</span>.bold,</div><div style="background:rgba(84,197,248,0.12); margin:0 -20px; padding:0 20px; border-left:3px solid var(--blue);">      ),</div><div style="background:rgba(84,197,248,0.12); margin:0 -20px; padding:0 20px; border-left:3px solid var(--blue);">    );</div><div>  }</div><div>}</div></div>
+      </div>
+      <div class="ph-caption" style="margin-top:8px;">StatelessWidget · build(context) → Widget</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 2.3 — CH 2.3: TEXT & TEXTFIELD
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch2-3" data-notes="Chapter 2.3. Text and TextField. '1. Text for output — simple strings styled with fontSize, fontWeight, and onSurfaceVariant color. 2. TextField for input — starts bare, then styled with InputDecoration (hintText, prefixIcon, fillColor, rounded border) to produce SearchInputBar.'">
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 2</div>
+    <span class="ch-title">ui widgets: Text · TextField</span>
+  </div>
+
+  <div class="slide-body w55">
+    <div class="pane center ch2-split-left" style="align-items:stretch;">
+      <div class="s d0" style="flex-shrink:0;"><p class="eyebrow">text &amp; inputs</p></div>
+      <div class="s d1 ch2-split-left" style="flex:1;">
+        <div class="ch2-code-win" style="flex:1;">
+          <div class="ch2-code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">search_screen.dart</span><span class="win-lang">dart</span>
+          </div>
+          <div class="ch2-code-body" id="ch2-code-text">
+            <div class="ch2-code-line"><span class="c2-cmt">// ── 1. Text — strings &amp; styling ──────────────</span></div>
+            <div class="ch2-code-line"><span class="c2-type">Text</span>(</div>
+            <div class="ch2-code-line">  <span class="c2-str">"Discover"</span>,</div>
+            <div class="ch2-code-line">  style: <span class="c2-type">TextStyle</span>(</div>
+            <div class="ch2-code-line">    fontSize: <span class="c2-num">28</span>,</div>
+            <div class="ch2-code-line">    fontWeight: <span class="c2-type">FontWeight</span>.bold,</div>
+            <div class="ch2-code-line">  ),</div>
+            <div class="ch2-code-line">)</div>
+            <div class="ch2-code-line">&nbsp;</div>
+            <div class="ch2-code-line"><span class="c2-cmt">// ── 2. TextField — user input ────────────────</span></div>
+            <div class="ch2-code-line"><span class="c2-type">TextField</span>(</div>
+            <div class="ch2-code-line">  decoration: <span class="c2-type">InputDecoration</span>(</div>
+            <div class="ch2-code-line">    hintText: <span class="c2-str">"Search books, authors, characters…"</span>,</div>
+            <div class="ch2-code-line">    prefixIcon: <span class="c2-type">Icon</span>(<span class="c2-type">Icons</span>.search_rounded),</div>
+            <div class="ch2-code-line">    filled: <span class="c2-kw">true</span>,</div>
+            <div class="ch2-code-line">    fillColor: <span class="c2-type">Color</span>(<span class="c2-num">0xFF2A2A2A</span>),</div>
+            <div class="ch2-code-line">    border: <span class="c2-type">OutlineInputBorder</span>(</div>
+            <div class="ch2-code-line">      borderRadius: <span class="c2-type">BorderRadius</span>.circular(<span class="c2-num">12</span>),</div>
+            <div class="ch2-code-line">      borderSide: <span class="c2-type">BorderSide</span>.none,</div>
+            <div class="ch2-code-line">    ),</div>
+            <div class="ch2-code-line">  ),</div>
+            <div class="ch2-code-line">)</div>
+          </div>
+        </div>
+        <button class="ch2-replay" onclick="runCh2Demo('text')">↻ replay</button>
+      </div>
+    </div>
+
+    <div class="pane center ch2-split-right">
+      <div class="pixel-frame s d2">
+        <div class="pixel-camera"></div>
+        <div class="pixel-screen dark-surface">
+          <div class="pixel-status-bar">
+            <span class="status-time" style="color:rgba(255,255,255,0.6);">9:41</span>
+            <div class="status-icons">
+              <span class="status-icon-dot" style="background:rgba(255,255,255,0.4);"></span>
+              <span class="status-icon-dot" style="background:rgba(255,255,255,0.4);"></span>
+              <span class="status-icon-dot" style="background:rgba(255,255,255,0.4);"></span>
+            </div>
+          </div>
+          <div id="ch2-phone-text" style="position:absolute;inset:0;transition:opacity 0.18s ease;">
+            <div class="c2ph-topleft" style="padding-top:4px;">
+              <div style="background:#2A2A2A; border-radius:6px; padding:10px 10px; display:flex; align-items:center; gap:8px; width:100%; box-sizing:border-box;">
+                <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:#DDC0BF;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <span style="font-family:var(--font-ui); font-size:9.5px; color:#DDC0BF; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; line-height:1.2;">Search books, authors, characters…</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ph-caption" id="ch2-caption-text">Text · TextField</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 2.4 — CH 2.4: ATOMIC ELEMENTS (Icon · Image · Button)
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch2-4" data-notes="Chapter 2.4. Core Atoms: Icon, Image, and Buttons. 'Three fundamental visual atoms. 1. Icon for vector glyphs with custom size and primary color. 2. Image.asset wrapped in ClipRRect to give our book cover rounded corners. 3. OutlinedButton and FilledButton for secondary and primary actions with our theme colors.'">
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 2</div>
+    <span class="ch-title">ui widgets: Icon · Image · Button</span>
+  </div>
+
+  <div class="slide-body w55">
+    <div class="pane center ch2-split-left" style="align-items:stretch;">
+      <div class="s d0" style="flex-shrink:0;"><p class="eyebrow">atomic elements</p></div>
+      <div class="s d1 ch2-split-left" style="flex:1;">
+        <div class="ch2-code-win" style="flex:1;">
+          <div class="ch2-code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">search_result_card.dart</span><span class="win-lang">dart</span>
+          </div>
+          <div class="ch2-code-body" id="ch2-code-icon">
+            <div class="ch2-code-line"><span class="c2-cmt">// ── 1. Icon (vector glyphs) ─────────────────</span></div>
+            <div class="ch2-code-line"><span class="c2-type">Icon</span>(<span class="c2-type">Icons</span>.search_rounded, size: <span class="c2-num">40</span>, color: <span class="c2-type">Color</span>(<span class="c2-num">0xFFFFB3B1</span>))</div>
+            <div class="ch2-code-line">&nbsp;</div>
+            <div class="ch2-code-line"><span class="c2-cmt">// ── 2. Image &amp; ClipRRect (assets) ───────────</span></div>
+            <div class="ch2-code-line"><span class="c2-type">ClipRRect</span>(</div>
+            <div class="ch2-code-line">  borderRadius: <span class="c2-type">BorderRadius</span>.circular(<span class="c2-num">8</span>),</div>
+            <div class="ch2-code-line">  child: <span class="c2-type">Image</span>.asset(<span class="c2-str">"assets/book_cover.jpg"</span>, width: <span class="c2-num">100</span>, height: <span class="c2-num">150</span>, fit: <span class="c2-type">BoxFit</span>.cover),</div>
+            <div class="ch2-code-line">)</div>
+            <div class="ch2-code-line">&nbsp;</div>
+            <div class="ch2-code-line"><span class="c2-cmt">// ── 3. Buttons (actions) ────────────────────</span></div>
+            <div class="ch2-code-line"><span class="c2-type">FilledButton</span>(</div>
+            <div class="ch2-code-line">  style: <span class="c2-type">FilledButton</span>.styleFrom(backgroundColor: <span class="c2-type">Color</span>(<span class="c2-num">0xFFFFB3B1</span>), foregroundColor: <span class="c2-type">Color</span>(<span class="c2-num">0xFF630C16</span>)),</div>
+            <div class="ch2-code-line">  child: <span class="c2-kw">const</span> <span class="c2-type">Text</span>(<span class="c2-str">"Add to Bookshelf"</span>),</div>
+            <div class="ch2-code-line">)</div>
+          </div>
+        </div>
+        <button class="ch2-replay" onclick="runCh2Demo('icon')">↻ replay</button>
+      </div>
+    </div>
+
+    <div class="pane center ch2-split-right">
+      <div class="pixel-frame s d2">
+        <div class="pixel-camera"></div>
+        <div class="pixel-screen dark-surface">
+          <div class="pixel-status-bar">
+            <span class="status-time" style="color:rgba(255,255,255,0.6);">9:41</span>
+            <div class="status-icons">
+              <span class="status-icon-dot" style="background:rgba(255,255,255,0.4);"></span>
+              <span class="status-icon-dot" style="background:rgba(255,255,255,0.4);"></span>
+              <span class="status-icon-dot" style="background:rgba(255,255,255,0.4);"></span>
+            </div>
+          </div>
+          <div id="ch2-phone-icon" style="position:absolute;inset:0;transition:opacity 0.18s ease;">
+            <div class="c2ph-topleft" style="padding-top:6px;"><button style="background:#FFB3B1; border:none; color:#630C16; border-radius:5px; padding:7px 14px; font-family:var(--font-ui); font-size:10px; font-weight:700; cursor:pointer; width:fit-content; outline:none; display:inline-flex; align-items:center; justify-content:center;">Add to Bookshelf</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="ph-caption" id="ch2-caption-icon">Icon · Image · Button</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 2.8 — CH 2.8: COMPOSITION (Row · Column · Card)
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch2-8" data-notes="Chapter 2.8. Composing with Row, Column &amp; Card. '1. Column for vertical stacking (_MetaStat). 2. Row for horizontal arrangement (3 stats with separator dots). 3. Composing title, author, rating, divider, and stats into SearchCardDetails. 4. Assembling SearchCardCover and details inside a Row, adding actions below, wrapped in a surface Container to create SearchResultCard.'">
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 2</div>
+    <span class="ch-title">ui widgets: Row · Column · Card</span>
+  </div>
+
+  <div class="slide-body w55">
+    <div class="pane center ch2-split-left" style="align-items:stretch;">
+      <div class="s d0" style="flex-shrink:0;"><p class="eyebrow">layouts &amp; composition</p></div>
+      <div class="s d1 ch2-split-left" style="flex:1;">
+        <div class="ch2-code-win" style="flex:1;">
+          <div class="ch2-code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">search_result_card.dart</span><span class="win-lang">dart</span>
+          </div>
+          <div class="ch2-code-body" id="ch2-code-rowcol">
+            <div class="ch2-code-line"><span class="c2-cmt">// ── 4. SearchResultCard (Container) ──────────</span></div>
+            <div class="ch2-code-line"><span class="c2-type">Container</span>(</div>
+            <div class="ch2-code-line">  decoration: <span class="c2-type">BoxDecoration</span>(</div>
+            <div class="ch2-code-line">    color: <span class="c2-type">Color</span>(<span class="c2-num">0xFF201F1F</span>),</div>
+            <div class="ch2-code-line">    borderRadius: <span class="c2-type">BorderRadius</span>.circular(<span class="c2-num">12</span>),</div>
+            <div class="ch2-code-line">  ),</div>
+            <div class="ch2-code-line">  child: <span class="c2-type">Padding</span>(</div>
+            <div class="ch2-code-line">    padding: <span class="c2-kw">const</span> <span class="c2-type">EdgeInsets</span>.all(<span class="c2-num">16</span>),</div>
+            <div class="ch2-code-line">    child: <span class="c2-type">Column</span>(</div>
+            <div class="ch2-code-line">      crossAxisAlignment: <span class="c2-type">CrossAxisAlignment</span>.start,</div>
+            <div class="ch2-code-line">      children: [</div>
+            <div class="ch2-code-line">        <span class="c2-type">Row</span>(</div>
+            <div class="ch2-code-line">          crossAxisAlignment: <span class="c2-type">CrossAxisAlignment</span>.start,</div>
+            <div class="ch2-code-line">          children: [</div>
+            <div class="ch2-code-line">            <span class="c2-type">SearchCardCover</span>(imageUrl: <span class="c2-str">"assets/book_cover.jpg"</span>),</div>
+            <div class="ch2-code-line">            <span class="c2-kw">const</span> <span class="c2-type">SizedBox</span>(width: <span class="c2-num">14</span>),</div>
+            <div class="ch2-code-line">            <span class="c2-type">Expanded</span>(child: <span class="c2-type">SearchCardDetails</span>()),</div>
+            <div class="ch2-code-line">          ],</div>
+            <div class="ch2-code-line">        ),</div>
+            <div class="ch2-code-line">        <span class="c2-kw">const</span> <span class="c2-type">SizedBox</span>(height: <span class="c2-num">14</span>),</div>
+            <div class="ch2-code-line">        <span class="c2-type">SearchCardActions</span>(),</div>
+            <div class="ch2-code-line">      ],</div>
+            <div class="ch2-code-line">    ),</div>
+            <div class="ch2-code-line">  ),</div>
+            <div class="ch2-code-line">)</div>
+          </div>
+        </div>
+        <button class="ch2-replay" onclick="runCh2Demo('rowcol')">↻ replay</button>
+      </div>
+    </div>
+
+    <div class="pane center ch2-split-right">
+      <div class="pixel-frame s d2">
+        <div class="pixel-camera"></div>
+        <div class="pixel-screen dark-surface">
+          <div class="pixel-status-bar">
+            <span class="status-time" style="color:rgba(255,255,255,0.6);">9:41</span>
+            <div class="status-icons">
+              <span class="status-icon-dot" style="background:rgba(255,255,255,0.4);"></span>
+              <span class="status-icon-dot" style="background:rgba(255,255,255,0.4);"></span>
+              <span class="status-icon-dot" style="background:rgba(255,255,255,0.4);"></span>
+            </div>
+          </div>
+          <div id="ch2-phone-rowcol" style="position:absolute;inset:0;transition:opacity 0.18s ease;">
+            <div class="c2ph-topleft" style="padding-top:2px;">
+              <div style="background:#201F1F; border-radius:8px; padding:12px; display:flex; flex-direction:column; gap:10px; width:100%; box-sizing:border-box;">
+                <div style="display:flex; gap:10px; align-items:flex-start;">
+                  <img src="assets/book_cover.jpg" style="width:52px; height:78px; object-fit:cover; border-radius:6px; flex-shrink:0;" />
+                  <div style="flex:1; display:flex; flex-direction:column; gap:2px; min-width:0;">
+                    <span style="font-family:var(--font-ui); font-size:11px; font-weight:700; color:#E5E2E1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; line-height:1.25;">Norwegian Wood</span>
+                    <span style="font-family:var(--font-ui); font-size:8.5px; color:#DDC0BF; line-height:1.2;">Haruki Murakami</span>
+                    <div style="display:flex; align-items:center; gap:2px; margin-top:2px;">
+                      <svg viewBox="0 0 24 24" style="width:9px;height:9px;fill:#FFB3B1;stroke:#FFB3B1;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                      <svg viewBox="0 0 24 24" style="width:9px;height:9px;fill:#FFB3B1;stroke:#FFB3B1;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                      <svg viewBox="0 0 24 24" style="width:9px;height:9px;fill:#FFB3B1;stroke:#FFB3B1;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                      <svg viewBox="0 0 24 24" style="width:9px;height:9px;fill:#FFB3B1;stroke:#FFB3B1;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                      <svg viewBox="0 0 24 24" style="width:9px;height:9px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="none" stroke="#FFB3B1" stroke-width="1.5"/><path d="M12 2v15.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFB3B1"/></svg>
+                      <span style="font-family:var(--font-ui); font-size:8px; font-weight:600; color:#DDC0BF; margin-left:3px;">4.5</span>
+                    </div>
+                    <div style="height:1px; background:rgba(86,66,65,0.6); margin:5px 0;"></div>
+                    <div style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+                      <div style="display:flex; flex-direction:column;"><span style="font-family:var(--font-ui); font-size:9px; font-weight:700; color:#E5E2E1;">12</span><span style="font-family:var(--font-ui); font-size:7px; color:#DDC0BF;">editions</span></div>
+                      <span style="width:3px; height:3px; border-radius:50%; background:#775A58; flex-shrink:0;"></span>
+                      <div style="display:flex; flex-direction:column;"><span style="font-family:var(--font-ui); font-size:9px; font-weight:700; color:#E5E2E1;">384</span><span style="font-family:var(--font-ui); font-size:7px; color:#DDC0BF;">pages</span></div>
+                      <span style="width:3px; height:3px; border-radius:50%; background:#775A58; flex-shrink:0;"></span>
+                      <div style="display:flex; flex-direction:column;"><span style="font-family:var(--font-ui); font-size:9px; font-weight:700; color:#E5E2E1;">1987</span><span style="font-family:var(--font-ui); font-size:7px; color:#DDC0BF;">year</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div style="display:flex; gap:8px; width:100%; margin-top:2px;">
+                  <button style="flex:1; background:transparent; border:1px solid rgba(255,179,177,0.5); color:#FFB3B1; border-radius:5px; padding:6px 0; font-family:var(--font-ui); font-size:8.5px; font-weight:600; cursor:pointer; text-align:center;">Editions</button>
+                  <button style="flex:2; background:#FFB3B1; border:none; color:#630C16; border-radius:5px; padding:6px 0; font-family:var(--font-ui); font-size:8.5px; font-weight:700; cursor:pointer; text-align:center;">Add to Bookshelf</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ph-caption" id="ch2-caption-rowcol">Row · Column · Card</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE 2.10 — CH 2.10: SEARCH SCREEN ASSEMBLED
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch2-10" data-notes="Chapter 2.10. The assembled screen. 'This is how Flutter screens are built. A Column. A header. A SearchInputBar. A results counter Row. A scrollable list of SearchResultCards. Each one a widget. Each one a function. Compose them, and you have a complete screen.'">
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 2</div>
+    <span class="ch-title">ui widgets: the screen</span>
+  </div>
+
+  <div class="slide-body w55">
+    <div class="pane center ch2-split-left" style="align-items:stretch;">
+      <div class="s d0" style="flex-shrink:0;"><p class="eyebrow">atoms → components → screen</p></div>
+      <div class="s d1 ch2-split-left" style="flex:1;">
+        <div class="ch2-code-win" style="flex:1;">
+          <div class="ch2-code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">search_screen.dart</span><span class="win-lang">dart</span>
+          </div>
+          <div class="ch2-code-body" id="ch2-code-screen">
+            <div class="ch2-code-line"><span class="c2-cmt">// ── Assembling SearchScreen ─────────────────</span></div>
+            <div class="ch2-code-line"><span class="c2-type">Column</span>(</div>
+            <div class="ch2-code-line">  crossAxisAlignment: <span class="c2-type">CrossAxisAlignment</span>.start,</div>
+            <div class="ch2-code-line">  children: [</div>
+            <div class="ch2-code-line">    <span class="c2-type">Text</span>(<span class="c2-str">"Discover"</span>, style: <span class="c2-type">TextStyle</span>(fontSize: <span class="c2-num">22</span>, fontWeight: <span class="c2-type">FontWeight</span>.bold)),</div>
+            <div class="ch2-code-line">    <span class="c2-type">Text</span>(<span class="c2-str">"Find books, authors..."</span>, style: <span class="c2-type">TextStyle</span>(color: <span class="c2-type">Color</span>(<span class="c2-num">0xFFDDC0BF</span>))),</div>
+            <div class="ch2-code-line">    <span class="c2-kw">const</span> <span class="c2-type">SizedBox</span>(height: <span class="c2-num">16</span>),</div>
+            <div class="ch2-code-line">    <span class="c2-kw">const</span> <span class="c2-type">SearchInputBar</span>(),</div>
+            <div class="ch2-code-line">    <span class="c2-kw">const</span> <span class="c2-type">SizedBox</span>(height: <span class="c2-num">20</span>),</div>
+            <div class="ch2-code-line">    <span class="c2-type">Row</span>(</div>
+            <div class="ch2-code-line">      mainAxisAlignment: <span class="c2-type">MainAxisAlignment</span>.spaceBetween,</div>
+            <div class="ch2-code-line">      children: [</div>
+            <div class="ch2-code-line">        <span class="c2-type">Text</span>(<span class="c2-str">"Results"</span>, style: <span class="c2-type">TextStyle</span>(fontWeight: <span class="c2-type">FontWeight</span>.bold)),</div>
+            <div class="ch2-code-line">        <span class="c2-type">Text</span>(<span class="c2-str">"13 found"</span>, style: <span class="c2-type">TextStyle</span>(color: <span class="c2-type">Color</span>(<span class="c2-num">0xFFDDC0BF</span>))),</div>
+            <div class="ch2-code-line">      ],</div>
+            <div class="ch2-code-line">    ),</div>
+            <div class="ch2-code-line">    <span class="c2-kw">const</span> <span class="c2-type">SizedBox</span>(height: <span class="c2-num">12</span>),</div>
+            <div class="ch2-code-line">    <span class="c2-type">Expanded</span>(</div>
+            <div class="ch2-code-line">      child: <span class="c2-type">ListView</span>(</div>
+            <div class="ch2-code-line">        children: <span class="c2-kw">const</span> [</div>
+            <div class="ch2-code-line">          <span class="c2-type">SearchResultCard</span>(),</div>
+            <div class="ch2-code-line">          <span class="c2-type">SizedBox</span>(height: <span class="c2-num">12</span>),</div>
+            <div class="ch2-code-line">          <span class="c2-type">SearchResultCard</span>(),</div>
+            <div class="ch2-code-line">        ],</div>
+            <div class="ch2-code-line">      ),</div>
+            <div class="ch2-code-line">    ),</div>
+            <div class="ch2-code-line">  ],</div>
+            <div class="ch2-code-line">)</div>
+          </div>
+        </div>
+        <button class="ch2-replay" onclick="runCh2Demo('screen')">↻ replay</button>
+      </div>
+    </div>
+
+    <div class="pane center ch2-split-right">
+      <div class="pixel-frame s d2">
+        <div class="pixel-camera"></div>
+        <div class="pixel-screen dark-surface">
+          <div class="pixel-status-bar">
+            <span class="status-time" style="color:rgba(255,255,255,0.6);">9:41</span>
+            <div class="status-icons">
+              <span class="status-icon-dot" style="background:rgba(255,255,255,0.4);"></span>
+              <span class="status-icon-dot" style="background:rgba(255,255,255,0.4);"></span>
+              <span class="status-icon-dot" style="background:rgba(255,255,255,0.4);"></span>
+            </div>
+          </div>
+          <div id="ch2-phone-screen" style="position:absolute;inset:0;transition:opacity 0.18s ease;">
+            <div class="c2ph-topleft" style="padding-top:4px; display:flex; flex-direction:column; gap:8px; width:100%; box-sizing:border-box;">
+              <div style="display:flex; flex-direction:column; gap:2px;">
+                <span style="font-family:var(--font-ui); font-size:14px; font-weight:700; color:#E5E2E1;">Discover</span>
+                <span style="font-family:var(--font-ui); font-size:9px; color:#DDC0BF;">Find books, authors, and characters</span>
+              </div>
+              <div style="background:#2A2A2A; border-radius:6px; padding:7px 9px; display:flex; align-items:center; gap:6px; width:100%; box-sizing:border-box;">
+                <svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:#DDC0BF;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <span style="font-family:var(--font-ui); font-size:8.5px; color:#DDC0BF; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Search books, authors, characters…</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:2px;">
+                <span style="font-family:var(--font-ui); font-size:10.5px; font-weight:700; color:#E5E2E1;">Results</span>
+                <span style="font-family:var(--font-ui); font-size:8.5px; color:#DDC0BF;">13 found</span>
+              </div>
+              <div style="background:#201F1F; border-radius:8px; padding:10px; display:flex; flex-direction:column; gap:8px; width:100%; box-sizing:border-box;">
+                <div style="display:flex; gap:8px; align-items:flex-start;">
+                  <img src="assets/book_cover.jpg" style="width:44px; height:66px; object-fit:cover; border-radius:5px; flex-shrink:0;" />
+                  <div style="flex:1; display:flex; flex-direction:column; gap:1.5px; min-width:0;">
+                    <span style="font-family:var(--font-ui); font-size:10px; font-weight:700; color:#E5E2E1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; line-height:1.2;">Norwegian Wood</span>
+                    <span style="font-family:var(--font-ui); font-size:8px; color:#DDC0BF; line-height:1.2;">Haruki Murakami</span>
+                    <div style="display:flex; align-items:center; gap:1.5px; margin-top:1px;">
+                      <svg viewBox="0 0 24 24" style="width:8px;height:8px;fill:#FFB3B1;stroke:#FFB3B1;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                      <svg viewBox="0 0 24 24" style="width:8px;height:8px;fill:#FFB3B1;stroke:#FFB3B1;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                      <svg viewBox="0 0 24 24" style="width:8px;height:8px;fill:#FFB3B1;stroke:#FFB3B1;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                      <svg viewBox="0 0 24 24" style="width:8px;height:8px;fill:#FFB3B1;stroke:#FFB3B1;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                      <svg viewBox="0 0 24 24" style="width:8px;height:8px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="none" stroke="#FFB3B1" stroke-width="1.5"/><path d="M12 2v15.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFB3B1"/></svg>
+                      <span style="font-family:var(--font-ui); font-size:7.5px; font-weight:600; color:#DDC0BF; margin-left:2px;">4.5</span>
+                    </div>
+                    <div style="height:1px; background:rgba(86,66,65,0.6); margin:4px 0;"></div>
+                    <div style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+                      <div style="display:flex; flex-direction:column;"><span style="font-family:var(--font-ui); font-size:8px; font-weight:700; color:#E5E2E1;">12</span><span style="font-family:var(--font-ui); font-size:6px; color:#DDC0BF;">editions</span></div>
+                      <span style="width:2.5px; height:2.5px; border-radius:50%; background:#775A58; flex-shrink:0;"></span>
+                      <div style="display:flex; flex-direction:column;"><span style="font-family:var(--font-ui); font-size:8px; font-weight:700; color:#E5E2E1;">384</span><span style="font-family:var(--font-ui); font-size:6px; color:#DDC0BF;">pages</span></div>
+                      <span style="width:2.5px; height:2.5px; border-radius:50%; background:#775A58; flex-shrink:0;"></span>
+                      <div style="display:flex; flex-direction:column;"><span style="font-family:var(--font-ui); font-size:8px; font-weight:700; color:#E5E2E1;">1987</span><span style="font-family:var(--font-ui); font-size:6px; color:#DDC0BF;">year</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div style="display:flex; gap:6px; width:100%; margin-top:1px;">
+                  <button style="flex:1; background:transparent; border:1px solid rgba(255,179,177,0.5); color:#FFB3B1; border-radius:4px; padding:5px 0; font-family:var(--font-ui); font-size:8px; font-weight:600; cursor:pointer; text-align:center;">Editions</button>
+                  <button style="flex:2; background:#FFB3B1; border:none; color:#630C16; border-radius:4px; padding:5px 0; font-family:var(--font-ui); font-size:8px; font-weight:700; cursor:pointer; text-align:center;">Add to Bookshelf</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ph-caption" id="ch2-caption-screen">SearchScreen (Assembled)</div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- ── Chapter: 03_data.html ── -->
+<!-- ════════════════════════════════════════════════════════
+     CH3 — DATA: NETWORKING + SERIALIZATION
+     Slides 12–17 (after Ch0-2 = 11 slides)
+     ════════════════════════════════════════════════════════ -->
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH3.1 — THE PROBLEM: HARDCODED UI
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch3-1"
+  data-notes="Chapter 3 opener. 'We now know how to draw any UI. But what are we drawing? Everything so far has been hardcoded. Real apps react to real data — and that data has to come from somewhere.'">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 3</div>
+    <span class="ch-title">data: networking + serialization</span>
+  </div>
+
+  <div class="slide-body w55">
+    <div class="pane">
+      <div class="s d0"><p class="eyebrow">the next question</p></div>
+      <div class="s d1">
+        <h2 class="h2">ok, but what<br>do we draw?</h2>
+      </div>
+      <div class="s d2">
+        <p class="body-txt">
+          Everything so far has been <strong>hardcoded</strong>.<br>
+          Real apps talk to a server.
+        </p>
+      </div>
+      <div class="s d3" style="display:flex;flex-direction:column;gap:10px;margin-top:4px;">
+        <div class="ch3-flow-row">
+          <span class="ch3-pill ch3-pill-muted">UI</span>
+          <span class="ch3-arrow">→</span>
+          <span class="ch3-pill ch3-pill-warn">hardcoded data 🤷</span>
+        </div>
+        <div class="ch3-flow-row s d4">
+          <span class="ch3-pill ch3-pill-blue">UI</span>
+          <span class="ch3-arrow">←</span>
+          <span class="ch3-pill ch3-pill-blue">API</span>
+          <span class="ch3-arrow">←</span>
+          <span class="ch3-pill ch3-pill-blue">server</span>
+        </div>
+      </div>
+    </div>
+    <div class="pane center">
+      <div class="s d3">
+        <div class="ch3-steps-card">
+          <p class="eyebrow" style="margin-bottom:14px;">this chapter covers</p>
+          <div class="ch3-step-item">
+            <span class="ch3-step-num">01</span>
+            <div><div class="ch3-step-title">GraphQL client</div><div class="ch3-step-sub">one instance, shared everywhere</div></div>
+          </div>
+          <div class="ch3-step-item">
+            <span class="ch3-step-num">02</span>
+            <div><div class="ch3-step-title">query → JSON</div><div class="ch3-step-sub">async call, raw response</div></div>
+          </div>
+          <div class="ch3-step-item">
+            <span class="ch3-step-num">03</span>
+            <div><div class="ch3-step-title">JSON → Dart objects</div><div class="ch3-step-sub">freezed + json_serializable</div></div>
+          </div>
+          <div class="ch3-step-item">
+            <span class="ch3-step-num">04</span>
+            <div><div class="ch3-step-title">repository pattern</div><div class="ch3-step-sub">clean layer, clean interface</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH3.2 — GRAPHQL CLIENT SETUP
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch3-2"
+  data-notes="GraphQL client. 'Instead of REST, we use GraphQL — ask for exactly what you need, nothing more. Three lines: HttpLink with the endpoint and auth header, GraphQLClient with a cache. Created once at startup, shared everywhere via DI.'">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 3</div>
+    <span class="ch-title">the client</span>
+  </div>
+
+  <div class="slide-body w55">
+    <div class="pane">
+      <div class="s d0"><p class="eyebrow">graphql_flutter</p></div>
+      <div class="s d1"><h2 class="h2">one client.<br>everywhere.</h2></div>
+      <div class="s d2">
+        <p class="body-txt">
+          Ask for <strong>exactly what you need</strong> — no over-fetching, no under-fetching.<br><br>
+          Created <em>once</em> at startup. Injected wherever data is needed.
+        </p>
+      </div>
+      <div class="s d3">
+        <div class="ch3-aside-chip">
+          <span class="ch3-chip-label">vs REST</span>
+          one endpoint — the query defines the shape
+        </div>
+      </div>
+    </div>
+    <div class="pane center">
+      <div class="s d2" style="width:100%;">
+        <div class="code-win">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">core/network/graphql_client_factory.dart</span><span class="win-lang">dart</span>
+          </div>
+          <pre><code class="language-dart">GraphQLClient createGraphQLClient() {
+  final httpLink = HttpLink(
+    AppEnv.baseUrl,
+    defaultHeaders: {
+      "Authorization":
+        "Bearer ${AppEnv.bearerToken}",
+    },
+  );
+
+  return GraphQLClient(
+    cache: GraphQLCache(),
+    link: httpLink,
+  );
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH3.3 — WRITING THE QUERY
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch3-3"
+  data-notes="The query. 'A GraphQL query is a string that describes exactly the data you want. One file per operation, typed variables, no over-fetching.'">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 3</div>
+    <span class="ch-title">the query</span>
+  </div>
+
+  <div class="slide-body">
+    <div class="pane center">
+      <div class="s d1" style="width:100%;">
+        <div class="code-win">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">search/data/queries/search_books_query.dart</span><span class="win-lang">graphql</span>
+          </div>
+          <pre><code class="language-dart">const String searchBooksQuery = '''
+  query SearchBooks($query: String!) {
+    search(query: $query) {
+      results
+    }
+  }
+''';</code></pre>
+        </div>
+      </div>
+    </div>
+    <div class="pane">
+      <div class="s d0"><p class="eyebrow">declarative data fetching</p></div>
+      <div class="s d1"><h2 class="h2" style="font-size:clamp(22px,2.8vw,36px);">describe what<br>you want.</h2></div>
+      <div class="s d2">
+        <p class="body-txt">
+          A <strong>plain Dart string</strong>. No magic, no generated client.
+          Variables are typed. The server enforces the schema.
+        </p>
+      </div>
+      <div class="s d3">
+        <div class="ch3-callout-row">
+          <div class="ch3-callout-item"><span class="ch3-callout-icon">📄</span><span class="ch3-callout-text">one file per operation</span></div>
+          <div class="ch3-callout-item"><span class="ch3-callout-icon">🔒</span><span class="ch3-callout-text">typed variables</span></div>
+          <div class="ch3-callout-item"><span class="ch3-callout-icon">🎯</span><span class="ch3-callout-text">no over-fetching</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH3.4 — ASYNC CALL + JSON RESPONSE
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch3-4"
+  data-has-fragments="true" data-fragments-count="1" data-current-frag="0"
+  data-notes="The async call. 'We can't hold our breath waiting for the server. async/await lets us write sequential-looking code without blocking the UI. Back comes raw JSON. Dart speaks objects — we need a translator.' (press NEXT for the problem badge)">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 3</div>
+    <span class="ch-title">the call</span>
+  </div>
+
+  <div class="slide-body w55">
+    <div class="pane center" style="align-items:stretch;">
+      <div class="s d1" style="display:flex;flex-direction:column;">
+        <div class="code-win" style="flex:1;">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">search_repository_impl.dart</span><span class="win-lang">dart</span>
+          </div>
+          <pre><code class="language-dart">Future&lt;Result&lt;List&lt;Book&gt;&gt;&gt; searchBooks(
+  String query,
+) async {
+  final options = QueryOptions(
+    document: gql(searchBooksQuery),
+    variables: {"query": query},
+  );
+
+  final result = await _client.query(options);
+
+  if (result.hasException) {
+    return Failure(UnknownException(
+      result.exception.toString(),
+    ));
+  }
+
+  // result.data is raw JSON 👇
+  final rawMap =
+    result.data?["search"]?["results"];
+  // ... now what?
+}</code></pre>
+        </div>
+      </div>
+    </div>
+    <div class="pane center">
+      <div class="s d2" style="width:100%;">
+        <div class="code-win">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">response.json</span><span class="win-lang">json</span>
+          </div>
+          <pre><code class="language-dart">// server responds with ↓
+{
+  "search": {
+    "results": {
+      "hits": [
+        {
+          "document": {
+            "id": "12345",
+            "title": "Dune",
+            "author_names": [
+              "Frank Herbert"
+            ],
+            "release_year": 1965,
+            "rating": 4.8,
+            "image": {
+              "url": "https://..."
+            }
+          }
+        }
+      ]
+    }
+  }
+}</code></pre>
+        </div>
+        <!-- Revealed via CSS when section gets frag-1-active -->
+        <div class="ch3-problem-badge">
+          <span>⚠️</span>
+          <span>Dart speaks <strong>objects</strong> — not raw maps</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH3.5 — FREEZED DTO: JSON → DART OBJECT
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch3-5"
+  data-notes="Serialization. 'Writing fromJson by hand is tedious and error-prone. freezed + json_serializable handles this entirely — annotate the class, run build_runner once, the generated code handles all JSON mapping. Immutable, with copyWith, equality, toString, all for free.'">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 3</div>
+    <span class="ch-title">serialization: json → dart</span>
+  </div>
+
+  <div class="slide-body">
+    <div class="pane center">
+      <div class="s d1" style="width:100%;">
+        <div class="code-win">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">data/dto/search_result_dto.dart</span><span class="win-lang">dart</span>
+          </div>
+          <pre><code class="language-dart">@freezed
+abstract class SearchResultDto
+    with _$SearchResultDto {
+  const factory SearchResultDto({
+    @JsonKey(fromJson: _parseId)
+    required int id,
+    required String title,
+    @JsonKey(name: "author_names")
+    @Default([]) List&lt;String&gt; authorNames,
+    ImageDto? image,
+    int? pages,
+    @JsonKey(name: "release_year")
+    int? releaseYear,
+    double? rating,
+    @Default([]) List&lt;String&gt; genres,
+  }) = _SearchResultDto;
+
+  factory SearchResultDto.fromJson(
+    Map&lt;String, dynamic&gt; json,
+  ) =&gt; _$SearchResultDtoFromJson(json);
+}</code></pre>
+        </div>
+      </div>
+    </div>
+    <div class="pane">
+      <div class="s d0"><p class="eyebrow">freezed + json_serializable</p></div>
+      <div class="s d1"><h2 class="h2" style="font-size:clamp(20px,2.6vw,34px);">annotate once.<br>never write<br>fromJson again.</h2></div>
+      <div class="s d2">
+        <div class="ch3-gen-flow">
+          <div class="ch3-gen-step">
+            <span class="ch3-gen-badge ch3-gen-badge-you">you write</span>
+            <span class="ch3-gen-file">search_result_dto.dart</span>
+          </div>
+          <div class="ch3-gen-arrow">↓ <code>dart run build_runner build</code></div>
+          <div class="ch3-gen-step">
+            <span class="ch3-gen-badge ch3-gen-badge-gen">generated</span>
+            <span class="ch3-gen-file">search_result_dto.g.dart</span>
+          </div>
+          <div class="ch3-gen-step">
+            <span class="ch3-gen-badge ch3-gen-badge-gen">generated</span>
+            <span class="ch3-gen-file">search_result_dto.freezed.dart</span>
+          </div>
+        </div>
+      </div>
+      <div class="s d3">
+        <p class="body-txt" style="font-size:var(--fs-body-sm);margin-top:8px;">
+          Immutable, <code>copyWith</code>, equality, <code>toString</code> — all for free.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH3.6 — MAPPER + REPOSITORY INTERFACE
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch3-6"
+  data-notes="Mapper and repository. 'The DTO knows about JSON. The domain model knows about the app. The mapper is the bridge — pure function, DTO in, domain object out. The repository interface is the contract: ask for books, don't care if they come from GraphQL, REST, or cache. That's the data layer, end to end.'">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 3</div>
+    <span class="ch-title">mapper + repository</span>
+  </div>
+
+  <div class="slide-body w60" style="gap: clamp(24px, 4vw, 56px);">
+    <!-- LEFT: Mapper + interface code with generous spacing -->
+    <div class="pane center" style="gap: clamp(14px, 1.8vh, 22px);">
+      <div class="s d1" style="width:100%;">
+        <div class="code-win">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">data/mapper/search_mapper.dart</span><span class="win-lang">dart</span>
+          </div>
+          <pre><code class="language-dart">abstract final class SearchMapper {
+  static Book toBook(SearchResultDto dto) {
+    return Book(
+      id: dto.id.toString(),
+      title: dto.title,
+      author: dto.authorNames.isNotEmpty
+          ? dto.authorNames.first
+          : "Unknown",
+      coverUrl: dto.image?.url,
+      pages: dto.pages,
+      publishedYear: dto.releaseYear,
+      rating: dto.rating,
+      genres: dto.genres,
+    );
+  }
+}</code></pre>
+        </div>
+      </div>
+      <div class="s d2" style="width:100%;">
+        <div class="code-win">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">domain/search_repository.dart</span><span class="win-lang">dart</span>
+          </div>
+          <pre><code class="language-dart">abstract interface class SearchRepository {
+  Future&lt;Result&lt;List&lt;Book&gt;&gt;&gt;
+    searchBooks(String query);
+  Future&lt;Result&lt;List&lt;Edition&gt;&gt;&gt;
+    getBookEditions(int id);
+}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Minimalist, clean pipeline diagram -->
+    <div class="pane center">
+      <div class="s d1">
+        <div class="ch3-layer-diagram">
+          <p class="eyebrow" style="margin-bottom:12px;letter-spacing:0.1em;">data pipeline</p>
+          
+          <div class="ch3-layer">
+            <div class="ch3-layer-left">
+              <span class="ch3-layer-dot dot-server"></span>
+              <span class="ch3-layer-label">GraphQL API</span>
+            </div>
+            <span class="ch3-layer-sub">raw JSON</span>
+          </div>
+          
+          <div class="ch3-layer-connector">
+            <span class="ch3-connector-line"></span>
+            <span class="ch3-connector-tag">fromJson()</span>
+          </div>
+          
+          <div class="ch3-layer">
+            <div class="ch3-layer-left">
+              <span class="ch3-layer-dot dot-dto"></span>
+              <span class="ch3-layer-label">SearchResultDto</span>
+            </div>
+            <span class="ch3-layer-sub">data model</span>
+          </div>
+          
+          <div class="ch3-layer-connector">
+            <span class="ch3-connector-line"></span>
+            <span class="ch3-connector-tag">SearchMapper</span>
+          </div>
+          
+          <div class="ch3-layer">
+            <div class="ch3-layer-left">
+              <span class="ch3-layer-dot dot-domain"></span>
+              <span class="ch3-layer-label">Book</span>
+            </div>
+            <span class="ch3-layer-sub">pure domain</span>
+          </div>
+          
+          <div class="ch3-layer-connector">
+            <span class="ch3-connector-line"></span>
+            <span class="ch3-connector-tag">SearchRepository</span>
+          </div>
+          
+          <div class="ch3-layer">
+            <div class="ch3-layer-left">
+              <span class="ch3-layer-dot dot-ui"></span>
+              <span class="ch3-layer-label">UI / Cubit</span>
+            </div>
+            <span class="ch3-layer-sub">presentation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     CH3 — SCOPED STYLES
+     ════════════════════════════════════════════════════════ -->
+<style>
+.ch3-flow-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.ch3-pill{padding:5px 14px;border-radius:var(--r-pill);font-size:var(--fs-body-sm);font-weight:600;font-family:var(--font-code);letter-spacing:0.02em;}
+.ch3-pill-muted{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);color:var(--t-secondary);}
+.ch3-pill-warn{background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.25);color:var(--orange);}
+.ch3-pill-blue{background:var(--blue-dim);border:1px solid rgba(84,197,248,0.25);color:var(--blue);}
+.ch3-arrow{color:var(--t-muted);font-size:var(--fs-body-sm);font-weight:700;}
+.ch3-steps-card{background:var(--bg-card);border:1px solid var(--bdr-card);border-radius:var(--r-lg);padding:clamp(18px,2vw,28px) clamp(18px,2vw,26px);display:flex;flex-direction:column;gap:18px;width:100%;}
+.ch3-step-item{display:flex;align-items:flex-start;gap:14px;}
+.ch3-step-num{font-family:var(--font-code);font-size:var(--fs-body-sm);font-weight:700;color:var(--blue);background:var(--blue-dim);border:1px solid rgba(84,197,248,0.2);border-radius:var(--r-sm);padding:2px 8px;flex-shrink:0;margin-top:1px;letter-spacing:0.04em;}
+.ch3-step-title{font-size:var(--fs-body);font-weight:600;color:var(--t-primary);line-height:1.3;}
+.ch3-step-sub{font-size:var(--fs-body-sm);color:var(--t-muted);margin-top:2px;}
+.ch3-aside-chip{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;background:rgba(187,134,252,0.08);border:1px solid rgba(187,134,252,0.2);border-radius:var(--r-pill);font-size:var(--fs-body-sm);color:var(--purple);font-weight:500;}
+.ch3-chip-label{font-weight:700;font-family:var(--font-code);font-size:var(--fs-eyebrow);letter-spacing:0.06em;text-transform:uppercase;background:rgba(187,134,252,0.15);border-radius:var(--r-sm);padding:1px 7px;}
+.ch3-callout-row{display:flex;flex-direction:column;gap:10px;margin-top:4px;}
+.ch3-callout-item{display:flex;align-items:center;gap:10px;font-size:var(--fs-body-sm);color:var(--t-secondary);}
+.ch3-callout-icon{font-size:16px;flex-shrink:0;}
+.ch3-callout-text{font-weight:500;}
+.ch3-problem-badge{display:flex;align-items:center;gap:8px;margin-top:10px;padding:9px 14px;background:rgba(255,107,53,0.08);border:1px solid rgba(255,107,53,0.25);border-radius:var(--r-md);font-size:var(--fs-body-sm);color:var(--orange);font-weight:500;opacity:0;transform:translateY(8px);transition:opacity 0.35s ease,transform 0.35s ease;}
+#slide-ch3-4.frag-1-active .ch3-problem-badge{opacity:1;transform:translateY(0);}
+.ch3-gen-flow{display:flex;flex-direction:column;gap:8px;}
+.ch3-gen-step{display:flex;align-items:center;gap:10px;}
+.ch3-gen-badge{font-family:var(--font-code);font-size:var(--fs-eyebrow);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;border-radius:var(--r-sm);padding:2px 8px;flex-shrink:0;}
+.ch3-gen-badge-you{background:var(--blue-dim);border:1px solid rgba(84,197,248,0.2);color:var(--blue);}
+.ch3-gen-badge-gen{background:var(--green-dim);border:1px solid rgba(0,230,118,0.2);color:var(--green);}
+.ch3-gen-file{font-family:var(--font-code);font-size:var(--fs-body-sm);color:var(--t-secondary);}
+.ch3-gen-arrow{font-size:var(--fs-body-sm);color:var(--t-muted);padding-left:4px;}
+.ch3-gen-arrow code{color:var(--purple);background:var(--purple-dim);border-radius:var(--r-sm);padding:1px 6px;font-size:var(--fs-eyebrow);}
+
+/* ── Minimalist Layer Diagram (Slide 17) ─────────────────── */
+.ch3-layer-diagram{
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid var(--bdr-subtle);
+  border-radius: var(--r-lg);
+  padding: clamp(18px, 2.2vw, 28px);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 380px;
+}
+.ch3-layer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: var(--r-md);
+  background: var(--bg-card);
+  border: 1px solid var(--bdr-card);
+}
+.ch3-layer-left{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ch3-layer-dot{
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+.dot-server{ background: var(--t-muted); }
+.dot-dto{ background: var(--orange); }
+.dot-domain{ background: var(--blue); }
+.dot-ui{ background: var(--purple); }
+
+.ch3-layer-label{
+  font-size: var(--fs-body-sm);
+  font-weight: 600;
+  color: var(--t-primary);
+  letter-spacing: -0.01em;
+}
+.ch3-layer-sub{
+  font-size: var(--fs-eyebrow);
+  color: var(--t-muted);
+  font-family: var(--font-code);
+}
+.ch3-layer-connector{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0 5px 17px;
+}
+.ch3-connector-line{
+  width: 1px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.12);
+}
+.ch3-connector-tag{
+  font-size: 11px;
+  font-family: var(--font-code);
+  color: var(--t-secondary);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--r-sm);
+  padding: 1px 7px;
+}
+</style>
+
+
+  <!-- ── Chapter: 04_state.html ── -->
+<!-- ════════════════════════════════════════════════════════
+     CH4 — STATE: MAKING THINGS DYNAMIC
+     ════════════════════════════════════════════════════════ -->
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH4.1 — THE MISSING LINK
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch4-1"
+  data-notes="Chapter 4 opener. 'We have beautiful UI from Chapter 2. We have a robust data pipeline from Chapter 3. But how do they talk? Hardcoded UI doesn\'t scale. We need the UI to react to data changes dynamically. State management is the glue.'">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 4</div>
+    <span class="ch-title">state: the missing link</span>
+  </div>
+
+  <div class="slide-body w60">
+    <div class="pane">
+      <div class="s d0"><p class="eyebrow">connecting the dots</p></div>
+      <div class="s d1">
+        <h2 class="h2">the UI needs<br>to react.</h2>
+      </div>
+      <div class="s d2">
+        <p class="body-txt">
+          We have the UI (Chapter 2).<br>
+          We have the Data (Chapter 3).<br>
+          But data sitting in memory is useless unless the UI <strong>reacts</strong> to it.
+        </p>
+      </div>
+      <div class="s d3" style="display:flex;flex-direction:column;gap:10px;margin-top:4px;">
+        <div class="ch4-flow-row">
+          <span class="ch4-pill ch4-pill-purple">SearchScreen</span>
+          <span class="ch4-arrow">???</span>
+          <span class="ch4-pill ch4-pill-blue">SearchRepository</span>
+        </div>
+      </div>
+    </div>
+    <div class="pane center">
+      <div class="s d3">
+        <div class="ch4-steps-card">
+          <p class="eyebrow" style="margin-bottom:14px;">this chapter covers</p>
+          <div class="ch4-step-item">
+            <span class="ch4-step-num">01</span>
+            <div><div class="ch4-step-title">Modeling State</div><div class="ch4-step-sub">Sealed classes for exact states</div></div>
+          </div>
+          <div class="ch4-step-item">
+            <span class="ch4-step-num">02</span>
+            <div><div class="ch4-step-title">Cubit (ViewModel)</div><div class="ch4-step-sub">Holding state and executing logic</div></div>
+          </div>
+          <div class="ch4-step-item">
+            <span class="ch4-step-num">03</span>
+            <div><div class="ch4-step-title">BlocBuilder</div><div class="ch4-step-sub">The UI reactor using Dart 3 pattern matching</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH4.2 — MODELING STATE
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch4-2"
+  data-notes="Modeling State. 'Before we react to state, we must define it. Using Dart 3\'s sealed class, we can define a finite set of states for any page. Initial, Loading, Success, Error.'">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 4</div>
+    <span class="ch-title">modeling state</span>
+  </div>
+
+  <div class="slide-body">
+    <div class="pane center">
+      <div class="s d1" style="width:100%;">
+        <div class="code-win">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">core/state/page_state.dart</span><span class="win-lang">dart</span>
+          </div>
+          <pre><code class="language-dart">sealed class PageState&lt;T&gt; {
+  const PageState();
+}
+
+final class PageInitial&lt;T&gt; extends PageState&lt;T&gt; {
+  const PageInitial();
+}
+
+final class PageLoading&lt;T&gt; extends PageState&lt;T&gt; {
+  const PageLoading();
+}
+
+final class PageSuccess&lt;T&gt; extends PageState&lt;T&gt; {
+  final T data;
+  const PageSuccess(this.data);
+}
+
+final class PageError&lt;T&gt; extends PageState&lt;T&gt; {
+  final String message;
+  const PageError(this.message);
+}</code></pre>
+        </div>
+      </div>
+    </div>
+    <div class="pane">
+      <div class="s d0"><p class="eyebrow">dart 3 sealed classes</p></div>
+      <div class="s d1"><h2 class="h2" style="font-size:clamp(22px,2.8vw,36px);">a finite set<br>of states.</h2></div>
+      <div class="s d2">
+        <p class="body-txt">
+          A page can only be in exactly one of these states. No impossible states (like being loading and having an error simultaneously).
+        </p>
+      </div>
+      <div class="s d3">
+        <div class="ch4-state-visuals">
+          <div class="ch4-state-box"><span>🔍</span> Initial</div>
+          <div class="ch4-state-box"><span>⏳</span> Loading</div>
+          <div class="ch4-state-box"><span>📚</span> Success</div>
+          <div class="ch4-state-box"><span>⚠️</span> Error</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH4.3 — CUBIT (VIEWMODEL)
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch4-3"
+  data-notes="Cubit. 'For Android devs, Cubit is your ViewModel. It asks the repository for data and pushes new states. Notice the sequence: emit Loading, fetch data, emit Success or Error. Pure logic, zero Flutter dependencies.'">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 4</div>
+    <span class="ch-title">the state machine (cubit)</span>
+  </div>
+
+  <div class="slide-body w60">
+    <div class="pane">
+      <div class="s d0"><p class="eyebrow">flutter_bloc</p></div>
+      <div class="s d1"><h2 class="h2">our viewmodel.</h2></div>
+      <div class="s d2">
+        <p class="body-txt">
+          <code>SearchCubit</code> holds the state and handles user actions.<br><br>
+          It executes the data fetch and <strong>emits</strong> new states. The logic lives here, completely decoupled from the UI.
+        </p>
+      </div>
+    </div>
+    <div class="pane center" style="align-items:stretch;">
+      <div class="s d1" style="display:flex;flex-direction:column;width:100%;">
+        <div class="code-win" style="flex:1;">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">search/presentation/cubit/search_cubit.dart</span><span class="win-lang">dart</span>
+          </div>
+          <pre><code class="language-dart">class SearchCubit extends Cubit&lt;PageState&lt;List&lt;Book&gt;&gt;&gt; {
+  SearchCubit(this._repository) : super(const PageInitial());
+
+  final SearchRepository _repository;
+
+  Future&lt;void&gt; search(String query) async {
+    if (query.trim().isEmpty) {
+      emit(const PageInitial());
+      return;
+    }
+
+    emit(const PageLoading());
+
+    final result = await _repository.searchBooks(query);
+
+    switch (result) {
+      case Success(:final data):
+        emit(PageSuccess(data));
+      case Failure(:final exception):
+        emit(PageError(exception.message));
+    }
+  }
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH4.4 — BLOCBUILDER (REACTING)
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch4-4"
+  data-notes="BlocBuilder. 'How does the UI know when state changes? BlocBuilder. Thanks to the sealed class, Dart\'s switch statement forces us to handle every single state exhaustively. Empty -> Loading -> Success.'">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 4</div>
+    <span class="ch-title">reacting to state</span>
+  </div>
+
+  <div class="slide-body">
+    <div class="pane center">
+      <div class="s d1" style="width:100%;">
+        <div class="code-win">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">widgets/search_results_list.dart</span><span class="win-lang">dart</span>
+          </div>
+          <pre><code class="language-dart">class SearchResultsList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // Listens to SearchCubit and rebuilds on new states
+    return BlocBuilder&lt;SearchCubit, PageState&lt;List&lt;Book&gt;&gt;&gt;(
+      builder: (context, state) {
+        
+        // Exhaustive pattern matching!
+        return switch (state) {
+          PageInitial() =&gt; const _SearchEmptyState(),
+          
+          PageLoading() =&gt; const PageLoadingIndicator(),
+          
+          PageSuccess(data: final books) =&gt; 
+              _SearchSuccessView(books: books),
+          
+          PageError(message: final msg) =&gt; 
+              PageErrorView(message: msg),
+        };
+      },
+    );
+  }
+}</code></pre>
+        </div>
+      </div>
+    </div>
+    <div class="pane">
+      <div class="s d0"><p class="eyebrow">blocbuilder</p></div>
+      <div class="s d1"><h2 class="h2" style="font-size:clamp(20px,2.6vw,34px);">exhaustive<br>pattern matching.</h2></div>
+      <div class="s d2">
+        <p class="body-txt">
+          Because <code>PageState</code> is sealed, the compiler <strong>forces</strong> us to handle every state. No more unhandled loading spinners.
+        </p>
+      </div>
+      <div class="s d3" style="margin-top: 16px;">
+        <div class="ch4-demo-box" style="max-width: 260px; margin: 0 auto;">
+          <video src="assets/videos/search_demo.mp4" autoplay muted loop playsinline
+                 style="width:100%; height:auto; max-height:50vh; border-radius:8px; border:1px solid rgba(255,255,255,0.1); object-fit:cover;"></video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     CH4 — SCOPED STYLES
+     ════════════════════════════════════════════════════════ -->
+<style>
+.ch4-flow-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.ch4-pill{padding:8px 18px;border-radius:var(--r-pill);font-size:var(--fs-body-sm);font-weight:600;font-family:var(--font-code);letter-spacing:0.02em;}
+.ch4-pill-purple{background:rgba(187,134,252,0.15);border:1px solid rgba(187,134,252,0.3);color:var(--purple);}
+.ch4-pill-blue{background:var(--blue-dim);border:1px solid rgba(84,197,248,0.25);color:var(--blue);}
+.ch4-arrow{color:var(--t-muted);font-size:var(--fs-body-sm);font-weight:700;}
+
+.ch4-steps-card{background:var(--bg-card);border:1px solid var(--bdr-card);border-radius:var(--r-lg);padding:clamp(18px,2vw,28px) clamp(18px,2vw,26px);display:flex;flex-direction:column;gap:18px;width:100%;}
+.ch4-step-item{display:flex;align-items:flex-start;gap:14px;}
+.ch4-step-num{font-family:var(--font-code);font-size:var(--fs-body-sm);font-weight:700;color:var(--purple);background:rgba(187,134,252,0.15);border:1px solid rgba(187,134,252,0.3);border-radius:var(--r-sm);padding:2px 8px;flex-shrink:0;margin-top:1px;letter-spacing:0.04em;}
+.ch4-step-title{font-size:var(--fs-body);font-weight:600;color:var(--t-primary);line-height:1.3;}
+.ch4-step-sub{font-size:var(--fs-body-sm);color:var(--t-muted);margin-top:2px;}
+
+.ch4-state-visuals{display:flex;flex-direction:column;gap:10px;margin-top:20px;}
+.ch4-state-box{display:flex;align-items:center;gap:12px;padding:10px 16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:var(--r-md);font-size:var(--fs-body-sm);color:var(--t-primary);font-weight:500;letter-spacing:0.02em;}
+.ch4-state-box span{font-size:18px;}
+
+.ch4-demo-box{background:var(--bg-card);border:1px solid var(--bdr-card);border-radius:var(--r-lg);padding:8px;box-shadow:0 8px 30px rgba(0,0,0,0.5);}
+</style>
+
+
+  <!-- ── Chapter: 05_architecture.html ── -->
+<!-- ════════════════════════════════════════════════════════
+     CH5 — ARCHITECTURE & DI
+     ════════════════════════════════════════════════════════ -->
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH5.1 — FEATURE FIRST ARCHITECTURE
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch5-1"
+  data-notes="Chapter 5 opener. 'As the app grows, how do we organize it? We don\'t put all UI in one folder and all networking in another. We slice the app vertically by feature.'">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 5</div>
+    <span class="ch-title">architecture</span>
+  </div>
+
+  <div class="slide-body w55">
+    <div class="pane">
+      <div class="s d0"><p class="eyebrow">scaling the app</p></div>
+      <div class="s d1">
+        <h2 class="h2">feature-first<br>structure.</h2>
+      </div>
+      <div class="s d2">
+        <p class="body-txt">
+          Instead of layering by type, we isolate by <strong>feature</strong>. 
+        </p>
+        <p class="body-txt" style="margin-top:16px;">
+          Each feature (Search, Home, Stats) acts like a mini-app with its own Data, Domain, and Presentation layers. Adding a new feature is completely isolated and safe.
+        </p>
+      </div>
+    </div>
+    
+    <div class="pane center">
+      <div class="s d2" style="width:100%;">
+        <div class="code-win">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">litreadz_v2 structure</span><span class="win-lang">tree</span>
+          </div>
+          <pre style="padding: 24px; font-family: var(--font-code); font-size: 15px; line-height: 1.6; overflow-x: auto;"><code style="color:var(--t-primary);">lib/
+├── <span style="color:var(--t-muted);">core/</span>
+│   ├── di/
+│   ├── network/
+│   └── theme/
+└── <span style="color:var(--t-primary); font-weight:700;">features/</span>
+    ├── home/
+    ├── <span style="color:var(--blue); font-weight:700;">search/</span>
+    │   ├── <span style="color:var(--orange);">data/</span>         <span style="color:var(--t-muted); font-size:12px;">← API, DTOs, Mappers</span>
+    │   ├── <span style="color:var(--green);">domain/</span>       <span style="color:var(--t-muted); font-size:12px;">← Pure Dart Models, Repositories</span>
+    │   └── <span style="color:var(--purple);">presentation/</span> <span style="color:var(--t-muted); font-size:12px;">← Cubit, Screens, Widgets</span>
+    ├── stats/
+    └── trending/</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH5.2 — DEPENDENCY INJECTION (get_it)
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch5-2"
+  data-notes="DI. 'The features are isolated, but they share core services. SearchRepository and TrendingRepository both need the GraphQLClient. We use get_it as a service locator to register these instances once at startup.'">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 5</div>
+    <span class="ch-title">dependency injection</span>
+  </div>
+
+  <div class="slide-body w55">
+    <div class="pane center" style="align-items:stretch;">
+      <div class="s d1" style="display:flex;flex-direction:column;width:100%;">
+        <div class="code-win" style="flex:1;">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">core/di/setup.dart</span><span class="win-lang">dart</span>
+          </div>
+          <pre><code class="language-dart">final sl = GetIt.instance;
+
+void setupDI() {
+  // --- Core & Services ---
+  sl.registerLazySingleton&lt;PrefsService&gt;(() =&gt; PrefsService());
+  
+  // 1. Create the shared client once
+  sl.registerLazySingleton&lt;GraphQLClient&gt;(
+    () =&gt; createGraphQLClient()
+  );
+
+  // ----- Search Feature -----
+  // 2. Inject it into the repository
+  sl.registerLazySingleton&lt;SearchRepository&gt;(
+    () =&gt; SearchRepositoryImpl(sl&lt;GraphQLClient&gt;()),
+  );
+  
+  sl.registerLazySingleton&lt;TrendingRepository&gt;(
+    () =&gt; TrendingRepositoryImpl(sl()),
+  );
+}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="pane">
+      <div class="s d0"><p class="eyebrow">sharing instances</p></div>
+      <div class="s d1"><h2 class="h2" style="font-size:clamp(22px,2.8vw,36px);">the service<br>locator.</h2></div>
+      <div class="s d2">
+        <p class="body-txt">
+          We use <code>get_it</code> to wire everything together.<br><br>
+          We create the <code>GraphQLClient</code> once, and inject it securely into any repository that needs it.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH5.3 — SINGLETONS VS FACTORIES
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch5-3"
+  data-notes="Factories. 'Network and Repositories are Singletons — they live forever. But Cubits hold UI state. We want a fresh Cubit every time we open a screen, so we use registerFactory. sl() infers the dependencies automatically.'">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 5</div>
+    <span class="ch-title">singletons vs factories</span>
+  </div>
+
+  <div class="slide-body w55">
+    <div class="pane">
+      <div class="s d0"><p class="eyebrow">managing lifecycles</p></div>
+      <div class="s d1"><h2 class="h2">fresh state<br>per screen.</h2></div>
+      <div class="s d2">
+        <p class="body-txt">
+          <strong>Singletons</strong> (network, repos) live forever.<br><br>
+          <strong>Factories</strong> return a <em>new</em> instance every time. We use factories for Cubits so UI state resets when you revisit a screen.
+        </p>
+      </div>
+      <div class="s d3" style="margin-top: 16px;">
+        <div style="background:rgba(84,197,248,0.05); border:1px solid rgba(84,197,248,0.2); padding:16px; border-radius:var(--r-md);">
+          <span style="font-family:var(--font-code); font-weight:700; color:var(--blue); font-size:14px;">sl() Inference</span>
+          <p style="font-size:13px; color:var(--t-secondary); margin-top:6px; line-height:1.5;">
+            Notice how <code>SearchCubit(sl(), sl())</code> doesn't need explicit types. Dart infers that it needs a <code>SearchRepository</code> and <code>HomeRepository</code> automatically.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pane center">
+      <div class="s d2" style="width:100%;">
+        <div class="code-win">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">core/di/setup.dart</span><span class="win-lang">dart</span>
+          </div>
+          <pre><code class="language-dart">void setupDI() {
+  // ... Core and Repositories ...
+
+  // --- State (Bloc/Cubit) ---
+  
+  sl.registerFactory&lt;HomeCubit&gt;(
+    () =&gt; HomeCubit(sl())
+  );
+  
+  sl.registerFactory&lt;SearchCubit&gt;(
+    () =&gt; SearchCubit(sl(), sl())
+  );
+  
+  sl.registerFactory&lt;EditionsCubit&gt;(
+    () =&gt; EditionsCubit(sl())
+  );
+  
+  sl.registerFactory&lt;TrendingCubit&gt;(
+    () =&gt; TrendingCubit(sl(), sl())
+  );
+  
+  sl.registerFactory&lt;StatsCubit&gt;(
+    () =&gt; StatsCubit(sl(), sl())
+  );
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- ── Chapter: 06_navigation.html ── -->
+<!-- ════════════════════════════════════════════════════════
+     CH6 — NAVIGATION
+     ════════════════════════════════════════════════════════ -->
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH6.1 — ROUTING & PASSING DATA
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch6-1"
+  data-notes="Chapter 6 opener. 'We have four screens in our app. How do we move between them? We use go_router. It treats our app like a website — everything is a URL path. This makes passing data between screens incredibly simple and safe.'">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 6</div>
+    <span class="ch-title">navigation</span>
+  </div>
+
+  <div class="slide-body w55">
+    <div class="pane">
+      <div class="s d0"><p class="eyebrow">go_router basics</p></div>
+      <div class="s d1">
+        <h2 class="h2">urls as the<br>source of truth.</h2>
+      </div>
+      <div class="s d2">
+        <p class="body-txt">
+          Navigation in modern Flutter uses <strong>paths</strong>, just like the web.<br><br>
+          Want to pass data between screens? Inject it directly into the URL path or query parameters.
+        </p>
+      </div>
+    </div>
+    
+    <div class="pane center">
+      <div class="s d2" style="width:100%;">
+        <div class="code-win">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">router basics</span><span class="win-lang">dart</span>
+          </div>
+          <pre><code class="language-dart">final router = GoRouter(
+  routes: [
+    GoRoute(
+      path: '/home',
+      builder: (context, state) =&gt; const HomeScreen(),
+    ),
+    
+    // Passing data via path parameters
+    GoRoute(
+      path: '/book/:id',
+      builder: (context, state) {
+        final id = state.pathParameters['id']!;
+        return BookDetailScreen(id: id);
+      },
+    ),
+  ],
+);
+
+// Triggering navigation:
+context.go('/book/84920');</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH6.2 — BOTTOM NAVIGATION BAR
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch6-2"
+  data-notes="Bottom Bars. 'For our four main screens, we need a persistent bottom navigation bar. Instead of manually tracking the active index, go_router provides a StatefulNavigationShell that handles the active tab for us.'">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 6</div>
+    <span class="ch-title">bottom bars</span>
+  </div>
+
+  <div class="slide-body w60">
+    <!-- LEFT PANE: CODE -->
+    <div class="pane center">
+      <div class="s d1" style="width:100%;">
+        <div class="code-win">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">app_navigation.dart</span><span class="win-lang">dart</span>
+          </div>
+          <pre style="padding: 14px;"><code class="language-dart" style="font-size: 13px;">NavigationBar(
+  selectedIndex: shell.currentIndex,
+  onDestinationSelected: (idx) =&gt; 
+      shell.goBranch(idx),
+  destinations: const [
+    NavigationDestination(
+      icon: Icon(Icons.home_outlined), 
+      label: "Home",
+    ),
+    NavigationDestination(
+      icon: Icon(Icons.bar_chart_outlined), 
+      label: "Stats",
+    ),
+    NavigationDestination(
+      icon: Icon(Icons.trending_up_outlined), 
+      label: "Trending",
+    ),
+    NavigationDestination(
+      icon: Icon(Icons.search_outlined), 
+      label: "Search",
+    ),
+  ],
+)</code></pre>
+        </div>
+      </div>
+    </div>
+    
+    <!-- RIGHT PANE: TEXT + PHONE -->
+    <div class="pane" style="justify-content: flex-start; padding-top: 20px;">
+      <div style="width: 100%;">
+        <div class="s d0"><p class="eyebrow">stateful navigation shell</p></div>
+        <div class="s d1"><h2 class="h2" style="font-size:clamp(22px,2.8vw,36px);">persistent<br>shell UI.</h2></div>
+        <div class="s d2">
+          <p class="body-txt">
+            The <code>NavigationBar</code> wraps our screens, dynamically swapping the active <code>body</code>.
+          </p>
+        </div>
+      </div>
+      
+      <div class="pixel-frame s d3" style="margin-top: 32px; transform: scale(0.95); transform-origin: top center; align-self: center;">
+        <div class="pixel-camera"></div>
+        <div class="pixel-screen dark-surface" style="display:flex; flex-direction:column; background: #121212;">
+          <div class="pixel-status-bar">
+            <span class="status-time" style="color:rgba(255,255,255,0.6);">9:41</span>
+            <div class="status-icons">
+              <span class="status-icon-dot" style="background:rgba(255,255,255,0.4);"></span>
+              <span class="status-icon-dot" style="background:rgba(255,255,255,0.4);"></span>
+              <span class="status-icon-dot" style="background:rgba(255,255,255,0.4);"></span>
+            </div>
+          </div>
+          <div class="ch6-nav-body" style="flex:1; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.2); font-family:var(--font-code); font-size:12px;">
+            home_screen
+          </div>
+          <div class="ch6-nav-bar-real">
+            <!-- Home (Active) -->
+            <div class="ch6-nav-item-real active">
+              <div class="icon-indicator">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+              </div>
+              <span>Home</span>
+            </div>
+            <!-- Stats -->
+            <div class="ch6-nav-item-real">
+              <div class="icon-indicator">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zm5.6 8H19v6h-2.8z"/></svg>
+              </div>
+              <span>Stats</span>
+            </div>
+            <!-- Trending -->
+            <div class="ch6-nav-item-real">
+              <div class="icon-indicator">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+              </div>
+              <span>Trending</span>
+            </div>
+            <!-- Search -->
+            <div class="ch6-nav-item-real">
+              <div class="icon-indicator">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+              </div>
+              <span>Search</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH6.3 — PRESERVING STATE
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch6-3"
+  data-notes="Preserving state. 'The real magic is StatefulShellRoute.indexedStack. If you type a search, switch to the Home tab, and switch back to Search... your text and results are still there. It keeps all tabs alive in memory.'">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 6</div>
+    <span class="ch-title">preserving state</span>
+  </div>
+
+  <div class="slide-body w55">
+    <div class="pane">
+      <div class="s d0"><p class="eyebrow">indexed stack</p></div>
+      <div class="s d1"><h2 class="h2">don't lose<br>your place.</h2></div>
+      <div class="s d2">
+        <p class="body-txt">
+          Normally, navigating destroys the old screen. <br><br>
+          By using an <code>indexedStack</code>, go_router keeps all four branches alive in the background. Your search results stay exactly as you left them.
+        </p>
+      </div>
+    </div>
+
+    <div class="pane center">
+      <div class="s d2" style="width:100%;">
+        <div class="code-win">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">core/router/app_routing.dart</span><span class="win-lang">dart</span>
+          </div>
+          <pre><code class="language-dart">final appRouter = GoRouter(
+  initialLocation: '/home',
+  routes: [
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, shell) =&gt; 
+          AppNavigation(navigationShell: shell),
+      branches: [
+        
+        StatefulShellBranch(routes: [
+          GoRoute(
+            path: '/home', 
+            builder: (_) =&gt; const HomeScreen(),
+          ),
+        ]),
+
+        StatefulShellBranch(routes: [
+          GoRoute(
+            path: '/search', 
+            builder: (_) =&gt; const SearchScreen(),
+          ),
+        ]),
+        
+        // ... StatsBranch, TrendingBranch
+      ],
+    ),
+  ],
+);</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     CH6 — SCOPED STYLES
+     ════════════════════════════════════════════════════════ -->
+<style>
+.ch6-nav-demo {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--bdr-card);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  height: 180px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.ch6-nav-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-code);
+  font-size: 14px;
+  color: var(--t-muted);
+  background: rgba(255,255,255,0.02);
+}
+.ch6-nav-bar {
+  height: 60px;
+  background: rgba(255,255,255,0.05);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 10px;
+}
+.ch6-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--t-secondary);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.ch6-nav-item.active {
+  color: var(--blue);
+}
+.ch6-nav-item span {
+  font-size: 18px;
+  opacity: 0.6;
+}
+.ch6-nav-item.active span {
+  opacity: 1;
+  filter: drop-shadow(0 0 4px rgba(84,197,248,0.5));
+}
+
+/* Material 3 Bottom Nav Real */
+.ch6-nav-bar-real {
+  height: 80px;
+  background: #1E1E1E; /* Material Dark Surface Container */
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 8px 16px 8px; /* Padding for bottom edge */
+}
+.ch6-nav-item-real {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 64px;
+  color: #C4C7C5; /* On Surface Variant */
+  transition: all 0.2s ease;
+}
+.ch6-nav-item-real span {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+.ch6-nav-item-real svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+.ch6-nav-item-real .icon-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 32px;
+  border-radius: 16px;
+}
+.ch6-nav-item-real.active {
+  color: #A8C7FA; /* Primary Container text (Material 3 Dark) */
+}
+.ch6-nav-item-real.active .icon-indicator {
+  background: #004A77; /* Primary Container background */
+  color: #C2E7FF; /* On Primary Container */
+}
+</style>
+
+
+  <!-- ── Chapter: 07_polish.html ── -->
+<!-- ════════════════════════════════════════════════════════
+     CH7 — THE FINAL POLISH
+     ════════════════════════════════════════════════════════ -->
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH7.1 — LOCAL PERSISTENCE CONCEPTS
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch7-1"
+  data-notes="Chapter 7 opener. 'An app isn\'t complete until it works offline and looks great. Let\'s talk about data persistence. We use two different tools depending on what we are saving.'">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 7</div>
+    <span class="ch-title">local persistence</span>
+  </div>
+
+  <div class="slide-body w60">
+    <div class="pane">
+      <div class="s d0"><p class="eyebrow">offline first</p></div>
+      <div class="s d1">
+        <h2 class="h2">saving data<br>locally.</h2>
+      </div>
+      <div class="s d2">
+        <p class="body-txt">
+          Network requests are slow and unreliable. We must cache data locally.<br><br>
+          We use two distinct tools for this, depending on the complexity of the data we are storing.
+        </p>
+      </div>
+    </div>
+    
+    <div class="pane center">
+      <div class="s d2" style="width:100%; display:flex; flex-direction:column; gap:20px;">
+        
+        <!-- Hive CE -->
+        <div style="background:rgba(255,203,107,0.05); border:1px solid rgba(255,203,107,0.2); padding:24px; border-radius:var(--r-lg);">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+            <span style="font-size:24px;">🐝</span>
+            <h3 style="font-family:var(--font-code); color:var(--orange); font-size:18px; margin:0;">hive_ce</h3>
+          </div>
+          <p style="color:var(--t-secondary); font-size:14px; line-height:1.5; margin:0;">
+            A lightning-fast NoSQL database. We use Hive to store complex, structured objects like user bookshelves (<code>UserBookDto</code>).
+          </p>
+        </div>
+
+        <!-- Shared Preferences -->
+        <div style="background:rgba(187,134,252,0.05); border:1px solid rgba(187,134,252,0.2); padding:24px; border-radius:var(--r-lg);">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+            <span style="font-size:24px;">⚙️</span>
+            <h3 style="font-family:var(--font-code); color:var(--purple); font-size:18px; margin:0;">shared_preferences</h3>
+          </div>
+          <p style="color:var(--t-secondary); font-size:14px; line-height:1.5; margin:0;">
+            A simple key-value store. Perfect for saving primitive, scalar values like the user's daily <code>reading_goal</code> or <code>current_streak</code>.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH7.2 — PERSISTENCE IN ACTION
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch7-2"
+  data-notes="Persistence in action. 'Here is what those implementations look like in our storage folder. Hive requires registering adapters for typed objects, while SharedPreferencesAsync securely saves integers and strings directly.'">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 7</div>
+    <span class="ch-title">the storage layer</span>
+  </div>
+
+  <div class="slide-body" style="gap:40px;">
+    <!-- LEFT: HIVE -->
+    <div class="pane center" style="flex:1;">
+      <div class="s d1" style="width:100%;">
+        <div class="code-win">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">core/storage/hive_storage.dart</span><span class="win-lang">dart</span>
+          </div>
+          <pre><code class="language-dart">abstract final class HiveStorage {
+  static const bookShelfBox = "bookshelf_box";
+
+  static Future&lt;void&gt; init() async {
+    await Hive.initFlutter();
+
+    // Required for complex objects
+    Hive.registerAdapters();
+    
+    await Hive.openBox&lt;UserBookDto&gt;(
+      bookShelfBox
+    );
+  }
+
+  static Box&lt;UserBookDto&gt; getBookShelfBox() {
+    return Hive.box&lt;UserBookDto&gt;(bookShelfBox);
+  }
+}</code></pre>
+        </div>
+      </div>
+    </div>
+    
+    <!-- RIGHT: PREFS -->
+    <div class="pane center" style="flex:1;">
+      <div class="s d2" style="width:100%;">
+        <div class="code-win">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">core/storage/prefs_service.dart</span><span class="win-lang">dart</span>
+          </div>
+          <pre><code class="language-dart">class PrefsService {
+  final asyncPrefs = SharedPreferencesAsync();
+
+  static const _streakKey = "current_streak";
+  static const _goalKey = "reading_goal";
+
+  // Async Setters
+  Future&lt;void&gt; setCurrentStreak(int n) {
+    return asyncPrefs.setInt(_streakKey, n);
+  }
+
+  // Async Getters
+  Future&lt;int?&gt; getCurrentStreak() {
+    return asyncPrefs.getInt(_streakKey);
+  }
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH7.3 — CONSUMING STORAGE
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch7-3"
+  data-notes="Consuming storage. 'Here is how we use it in the HomeRepository. We inject PrefsService to track the reading streak. And look at Hive — it acts like a normal Dart Map. We use box.put() to save a book, and box.get() to retrieve it.'">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 7</div>
+    <span class="ch-title">consuming storage</span>
+  </div>
+
+  <div class="slide-body w55">
+    <div class="pane">
+      <div class="s d0"><p class="eyebrow">repository layer</p></div>
+      <div class="s d1"><h2 class="h2">putting it<br>together.</h2></div>
+      <div class="s d2">
+        <p class="body-txt">
+          How is data actually saved and retrieved?<br><br>
+          In our <code>HomeRepository</code>, we inject the services. Hive acts exactly like a Dart <code>Map</code> (using <code>.get</code> and <code>.put</code>), and Prefs provides simple async getters and setters.
+        </p>
+      </div>
+    </div>
+
+    <div class="pane center">
+      <div class="s d2" style="width:100%;">
+        <div class="code-win">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">home_repository_impl.dart</span><span class="win-lang">dart</span>
+          </div>
+          <pre><code class="language-dart">class HomeRepositoryImpl implements HomeRepository {
+  final PrefsService _prefsService; // Injected
+  Box&lt;UserBookDto&gt; get _box =&gt; HiveStorage.getBookShelfBox();
+
+  // 1. Reading from Hive
+  Future&lt;UserBook?&gt; getBookById(String id) async {
+    final dto = _box.get(id); // Synchronous read!
+    if (dto == null) return null;
+    return UserBookMapper.fromDto(dto);
+  }
+
+  // 2. Writing to Hive
+  Future&lt;void&gt; saveBook(UserBook book) async {
+    final dto = UserBookMapper.toDto(book);
+    await _box.put(dto.bookId, dto);
+    
+    await _updateStreak(); // Update user stats
+  }
+
+  // 3. Using SharedPreferences
+  Future&lt;void&gt; _updateStreak() async {
+    final lastRead = await _prefsService.getLastReadDate();
+    int streak = await _prefsService.getCurrentStreak() ?? 0;
+    
+    await _prefsService.setCurrentStreak(streak + 1);
+  }
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH7.4 — THEMING
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch7-4"
+  data-notes="Theming. 'Moving to the UI polish: Theming. We don\'t hardcode colors in our widgets. We define an AppTheme that maps our brand colors into a Material 3 ColorScheme. This gives us beautiful Dark Mode automatically.'">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 7</div>
+    <span class="ch-title">the design system</span>
+  </div>
+
+  <div class="slide-body w60">
+    <div class="pane">
+      <div class="s d0"><p class="eyebrow">material 3</p></div>
+      <div class="s d1"><h2 class="h2">centralized<br>colors.</h2></div>
+      <div class="s d2">
+        <p class="body-txt">
+          Widgets should never have hardcoded colors.<br><br>
+          By mapping <code>AppColors</code> into a Material 3 <code>ColorScheme</code>, our entire app inherits Dark Mode, typography, and component styling globally.
+        </p>
+      </div>
+    </div>
+
+    <div class="pane center">
+      <div class="s d2" style="width:100%;">
+        <div class="code-win">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">core/theme/app_theme.dart</span><span class="win-lang">dart</span>
+          </div>
+          <pre><code class="language-dart">abstract final class AppTheme {
+  
+  static ThemeData get darkTheme =&gt; ThemeData(
+    useMaterial3: true,
+    brightness: Brightness.dark,
+    colorScheme: _colorScheme,
+    textTheme: AppTypography.textTheme,
+    
+    // Components inherit automatically
+    cardTheme: const CardThemeData(
+      color: AppColors.surfaceContainer,
+      elevation: 0,
+    ),
+  );
+
+  static const ColorScheme _colorScheme = 
+    ColorScheme(
+      brightness: Brightness.dark,
+      primary: AppColors.primary,
+      surface: AppColors.surface,
+      // ... maps 30+ semantic colors
+  );
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH7.5 — DYNAMIC THEMING
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch7-5"
+  data-notes="Dynamic Theming. 'But how do we use those colors inside a widget? We use a BuildContext extension. This allows us to write context.colorScheme.primary cleanly, making our widgets react dynamically to theme changes.'">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 7</div>
+    <span class="ch-title">dynamic theming</span>
+  </div>
+
+  <div class="slide-body w55">
+    <div class="pane center" style="align-items:stretch;">
+      <div class="s d1" style="display:flex;flex-direction:column;width:100%;">
+        <div class="code-win" style="flex:1;">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">theme_extensions.dart</span><span class="win-lang">dart</span>
+          </div>
+          <pre><code class="language-dart">import "package:flutter/material.dart";
+
+extension AppThemeX on BuildContext {
+  
+  TextTheme get textTheme =&gt; 
+      Theme.of(this).textTheme;
+      
+  ColorScheme get colorScheme =&gt; 
+      Theme.of(this).colorScheme;
+      
+}</code></pre>
+        </div>
+        
+        <div class="code-win" style="flex:1; margin-top:20px;">
+          <div class="code-win-bar">
+            <div class="mac-dots"><span class="md-r"></span><span class="md-y"></span><span class="md-g"></span></div>
+            <span class="win-fname">usage inside any widget</span><span class="win-lang">dart</span>
+          </div>
+          <pre><code class="language-dart">Container(
+  // Automatically reacts to Theme changes!
+  color: context.colorScheme.primaryContainer,
+  
+  child: Text(
+    "Hello World",
+    style: context.textTheme.bodyLarge,
+  ),
+);</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="pane">
+      <div class="s d0"><p class="eyebrow">context extensions</p></div>
+      <div class="s d1"><h2 class="h2">clean access.</h2></div>
+      <div class="s d2">
+        <p class="body-txt">
+          No more writing <code>Theme.of(context).colorScheme</code> everywhere.<br><br>
+          We use Dart extensions on <code>BuildContext</code> to inject the theme directly into the context, keeping UI code incredibly clean.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- ── Chapter: 08_outro.html ── -->
+<!-- ════════════════════════════════════════════════════════
+     CH8 — THE FULL PICTURE & OUTRO
+     ════════════════════════════════════════════════════════ -->
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH8.1 — THE FINAL PRODUCT
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch8-1"
+  data-notes="The Grand Finale. 'So, what does this all look like when it comes together? From knowing absolutely zero Flutter 40 days ago, to this: a fully reactive, offline-first, cleanly architected application running smoothly on a single codebase.'">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 8</div>
+    <span class="ch-title">the full picture</span>
+  </div>
+
+  <div class="slide-body w60">
+    <div class="pane">
+      <div class="s d0"><p class="eyebrow">40 days of flutter</p></div>
+      <div class="s d1">
+        <h2 class="h2">the final<br>product.</h2>
+      </div>
+      <div class="s d2">
+        <p class="body-txt" style="font-size: clamp(16px, 1.5vw, 20px);">
+          From zero Flutter knowledge to a fully reactive, beautifully themed, offline-first application.<br><br>
+          One unified codebase powering the entire experience.
+        </p>
+      </div>
+    </div>
+    
+    <div class="pane center">
+      <div class="pixel-frame s d2" style="transform: scale(0.95); transform-origin: center;">
+        <div class="pixel-camera"></div>
+        <div class="pixel-screen" style="background:#000; overflow:hidden;">
+          <video src="assets/videos/app_demo.mp4" autoplay muted loop playsinline
+                 style="width:100%; height:100%; object-fit:cover; pointer-events:none;"></video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH8.2 — THE ENGINE RECAP
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch8-2"
+  data-notes="The Engine Recap. 'To recap, here is the tech stack that made this possible. Flutter for the UI, Bloc for State, GraphQL for networking, go_router for navigation, Hive for storage, and get_it holding it all together.'">
+
+  <div class="slide-hdr">
+    <div class="ch-badge"><span class="dot"></span>Chapter 8</div>
+    <span class="ch-title">the engine</span>
+  </div>
+
+  <div class="slide-body" style="flex-direction:column; justify-content:center; align-items:center;">
+    <div class="s d0" style="text-align:center; margin-bottom: 40px;">
+      <p class="eyebrow">what makes it tick</p>
+      <h2 class="h2" style="font-size: clamp(28px, 3.5vw, 44px);">the litreadz stack.</h2>
+    </div>
+
+    <div class="s d1" style="width: 100%; max-width: 900px;">
+      <div class="ch8-stack-grid">
+        <!-- UI -->
+        <div class="ch8-stack-card">
+          <div class="ch8-icon" style="color:var(--blue);">🎨</div>
+          <div class="ch8-title">UI & Design</div>
+          <div class="ch8-desc">Flutter • Material 3<br>Google Fonts</div>
+        </div>
+        <!-- State -->
+        <div class="ch8-stack-card">
+          <div class="ch8-icon" style="color:var(--purple);">⚡</div>
+          <div class="ch8-title">State Management</div>
+          <div class="ch8-desc">flutter_bloc<br>Cubits • Sealed Classes</div>
+        </div>
+        <!-- Network -->
+        <div class="ch8-stack-card">
+          <div class="ch8-icon" style="color:var(--orange);">🌐</div>
+          <div class="ch8-title">Networking</div>
+          <div class="ch8-desc">graphql_flutter<br>Data Transfer Objects (DTOs)</div>
+        </div>
+        <!-- Routing -->
+        <div class="ch8-stack-card">
+          <div class="ch8-icon" style="color:var(--green);">🛣️</div>
+          <div class="ch8-title">Navigation</div>
+          <div class="ch8-desc">go_router<br>StatefulShellRoute</div>
+        </div>
+        <!-- Storage -->
+        <div class="ch8-stack-card">
+          <div class="ch8-icon" style="color:var(--orange);">💾</div>
+          <div class="ch8-title">Persistence</div>
+          <div class="ch8-desc">hive_ce (NoSQL)<br>shared_preferences</div>
+        </div>
+        <!-- DI -->
+        <div class="ch8-stack-card">
+          <div class="ch8-icon" style="color:var(--blue);">🔗</div>
+          <div class="ch8-title">Architecture</div>
+          <div class="ch8-desc">get_it (Service Locator)<br>Feature-First Clean Arch</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDE CH8.3 — Q&A / THANK YOU
+     ════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-ch8-3"
+  data-notes="The End. 'Thank you for your time and for joining me on this 40-day journey into Flutter. I'd love to answer any questions you have.'">
+  
+  <!-- Minimalist closer, no header needed -->
+  <div class="slide-body" style="flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+    <div class="s d0">
+      <h1 style="font-family: var(--font-ui); font-weight: 900; font-size: clamp(60px, 8vw, 120px); letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 20px;">
+        thank you.
+      </h1>
+    </div>
+    <div class="s d1">
+      <p style="font-size: clamp(20px, 2.5vw, 32px); color: var(--t-secondary); font-weight: 500;">
+        any questions?
+      </p>
+    </div>
+    
+    <div class="s d2" style="margin-top: 60px;">
+      <div style="display:inline-flex; align-items:center; gap:12px; background:rgba(255,255,255,0.03); padding:12px 24px; border-radius:100px; border:1px solid var(--bdr-subtle);">
+        <span style="color:var(--blue); font-size:24px;">🦋</span>
+        <span style="font-family:var(--font-code); font-size:14px; color:var(--t-primary); font-weight:600;">flutter_101</span>
+        <span style="color:var(--t-muted); font-size:14px;">|</span>
+        <span style="font-family:var(--font-code); font-size:14px; color:var(--t-secondary);">litreadz_v2</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     CH8 — SCOPED STYLES
+     ════════════════════════════════════════════════════════ -->
+<style>
+.ch8-stack-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+@media (max-width: 1000px) {
+  .ch8-stack-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.ch8-stack-card {
+  background: var(--bg-card);
+  border: 1px solid var(--bdr-card);
+  border-radius: var(--r-md);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.ch8-stack-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.2);
+}
+.ch8-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+  background: rgba(255,255,255,0.03);
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.ch8-title {
+  font-family: var(--font-code);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--t-primary);
+  margin-bottom: 8px;
+}
+.ch8-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--t-secondary);
+}
+</style>
+
+
+
+  <!-- Footer HUD -->
+  <div class="hud">
+    <div class="hud-left">
+      <span class="hud-mark">flutter_101</span>
+    </div>
+    <div class="hud-center">
+      <button class="nav-btn" id="prevBtn" aria-label="Previous slide">&larr;</button>
+      <span class="hud-count"><span id="slide-current">01</span><span class="hud-count-sep">/</span><span id="slide-total">15</span></span>
+      <button class="nav-btn" id="nextBtn" aria-label="Next slide">&rarr;</button>
+    </div>
+    <div class="hud-right"></div>
+  </div>
+
+  <!-- Presenter notes overlay -->
+  <div class="notes-overlay" id="notes-overlay">
+    <div class="notes-label">📝 Presenter Notes</div>
+    <div id="notes-text"></div>
+  </div>
+
+</div><!-- /.deck -->
+
+<!-- Interactive Scripts -->
+<script src="js/trees.js"></script>
+<script src="js/deck.js"></script>
+<!-- Prism.js: Catppuccin Syntax Highlighting -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-dart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-yaml.min.js"></script>
+</body>
+</html>
