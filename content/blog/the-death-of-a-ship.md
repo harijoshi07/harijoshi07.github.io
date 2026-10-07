@@ -25,4 +25,4 @@ i don't think the goal is to hate them. i don't think the goal is to pretend the
 
 see, if something couldn't survive as what it was, why force it to survive as something else? why reserve a part of yourself for something that you've already decided is dead? if you're going to give yourself to something, give yourself to something that's alive. not two thirds to something new while keeping one third buried somewhere in the past. not half a friendship because a whole relationship couldn't survive. maybe something new will grow. maybe it won't. you wouldn’t know. but it doesn't need to grow right there.
 
-after the death of a ship, don't try to grow something on top of its graveyard. walking with the flowers to the grave doesn't bring the dead back. don't..
+after the death of a ship, don't try to grow something on top of its graveyard. walking with the flowers to the grave doesn't bring the dead back. don't.
