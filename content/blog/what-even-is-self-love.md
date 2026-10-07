@@ -2,7 +2,6 @@
 title: "what even is self love:"
 date: 2025-05-24T21:21:20+05:45
 draft: false
-weight: 1
 
 cover:
   image: "images/self.jpg"

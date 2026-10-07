@@ -1,0 +1,430 @@
+/* ═══════════════════════════════════════════════════════════════
+   GOOGLE PIXEL DEVICE FRAME & SCREENS
+   ═══════════════════════════════════════════════════════════════ */
+.pixel-frame {
+  width: clamp(230px, 20vw, 290px);
+  height: clamp(470px, 42vw, 590px);
+  background: #1e1f24;
+  border-radius: clamp(32px, 3vw, 42px);
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  position: relative;
+  box-shadow: 
+    0 24px 48px -8px rgba(0,0,0,0.65),
+    0 0 0 1px rgba(0,0,0,0.8),
+    inset 0 1px 1px rgba(255,255,255,0.2);
+}
+
+.pixel-camera {
+  position: absolute;
+  top: 13px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 9px;
+  height: 9px;
+  background: #08080a;
+  border-radius: 50%;
+  border: 1.5px solid #1a1a20;
+  z-index: 10;
+  box-shadow: 0 0 1px rgba(255,255,255,0.2);
+}
+
+.pixel-screen {
+  background: #111116;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: calc(clamp(32px, 3vw, 42px) - 4px);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+.pixel-status-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.45);
+  font-family: var(--font-ui);
+  pointer-events: none;
+  z-index: 5;
+}
+.status-icons {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.status-icon-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+}
+
+.phone-text {
+  position: absolute;
+  top: 38px;
+  left: 16px;
+  font-family: var(--font-ui);
+  font-size: clamp(14px, 1.15vw, 17px);
+  font-weight: 500;
+  color: #f0f0f8;
+  transition: all 0.75s var(--ease-expo);
+  white-space: nowrap;
+}
+
+/* Fragment states for phone & code */
+.code-step-2 {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.frag-1-active .code-step-1 {
+  opacity: 0;
+  pointer-events: none;
+}
+.frag-1-active .code-step-2 {
+  opacity: 1;
+  pointer-events: auto;
+}
+.frag-1-active .phone-text {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CH2 — WIDGET FUNCTION ILLUSTRATION (Slide 2.1 opener)
+   ═══════════════════════════════════════════════════════════════ */
+.fn-table {
+  background: var(--bg-code);
+  border: 1px solid var(--bdr-subtle);
+  border-radius: var(--r-md);
+  padding: clamp(16px, 2vw, 28px) clamp(18px, 2.2vw, 32px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.4vw, 18px);
+}
+.fn-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.2vw, 16px);
+}
+.fn-input {
+  flex: 1;
+  font-family: var(--font-code);
+  font-size: var(--fs-code);
+  color: var(--t-secondary);
+}
+.fn-arrow {
+  color: var(--blue);
+  font-size: clamp(14px, 1.3vw, 18px);
+  font-weight: 700;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+.fn-output {
+  min-width: clamp(50px, 6vw, 80px);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.fn-out-text {
+  font-family: var(--font-ui);
+  font-size: clamp(11px, 1.1vw, 15px);
+  font-weight: 700;
+  color: var(--t-primary);
+}
+.fn-out-icon svg {
+  width: clamp(16px, 1.6vw, 22px);
+  height: clamp(16px, 1.6vw, 22px);
+  stroke: var(--blue);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.fn-out-btn {
+  padding: 4px 10px;
+  background: var(--blue);
+  color: #08080C;
+  border-radius: 5px;
+  font-family: var(--font-ui);
+  font-size: clamp(9px, 0.9vw, 12px);
+  font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CH2 — PHONE BODY & STATE SYSTEM
+   ═══════════════════════════════════════════════════════════════ */
+.phone-body {
+  position: absolute;
+  top: 28px; left: 0; right: 0; bottom: 0;
+  padding: clamp(8px, 0.9vw, 12px);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow: hidden;
+}
+
+.ph-states {
+  position: relative;
+  flex: 1;
+  width: 100%;
+}
+
+.ph-state {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s var(--ease-expo);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.ph-state.ph-state-0 { opacity: 1; pointer-events: auto; }
+
+/* ── Typography helpers ───────────────────────────────────────── */
+.ph-title {
+  font-family: var(--font-ui);
+  font-size: clamp(10px, 1vw, 14px);
+  font-weight: 800;
+  color: #f0f0f8;
+  line-height: 1.2;
+}
+.ph-subtitle {
+  font-family: var(--font-ui);
+  font-size: clamp(7.5px, 0.75vw, 10.5px);
+  font-weight: 400;
+  color: rgba(255,255,255,0.42);
+  line-height: 1.4;
+}
+.ph-body-text {
+  font-family: var(--font-ui);
+  font-size: clamp(7px, 0.7vw, 9.5px);
+  color: rgba(255,255,255,0.55);
+  line-height: 1.5;
+}
+.ph-label-sm {
+  font-family: var(--font-ui);
+  font-size: clamp(6px, 0.6vw, 8.5px);
+  font-weight: 600;
+  color: rgba(255,255,255,0.32);
+  letter-spacing: 0.04em;
+}
+.ph-badge {
+  display: inline-block;
+  padding: 1px 5px;
+  background: rgba(84,197,248,0.12);
+  border-radius: 3px;
+  font-family: var(--font-ui);
+  font-size: clamp(5.5px, 0.55vw, 7.5px);
+  font-weight: 700;
+  color: #54C5F8;
+}
+
+/* ── Icon demo ───────────────────────────────────────────────── */
+.ph-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3px 0;
+}
+.ph-icon-wrap svg {
+  transition: all 0.55s var(--ease-expo);
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── Book cover placeholder ──────────────────────────────────── */
+.ph-book-cover {
+  background: rgba(255,255,255,0.10);
+  flex-shrink: 0;
+  transition: all 0.55s var(--ease-expo);
+  border-radius: 2px;
+}
+
+/* ── Button demos ────────────────────────────────────────────── */
+.ph-btn {
+  padding: clamp(4px, 0.5vw, 6px) clamp(6px, 0.8vw, 10px);
+  border-radius: 5px;
+  font-family: var(--font-ui);
+  font-size: clamp(7px, 0.7vw, 10px);
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  line-height: 1;
+}
+.ph-btn-filled  { background: #54C5F8; color: #08080C; }
+.ph-btn-outlined { background: transparent; color: #54C5F8; border: 1px solid rgba(84,197,248,0.5); }
+.ph-btn-row { display: flex; gap: 5px; align-items: center; }
+.ph-btn-row .ph-btn-outlined { flex: 1; }
+.ph-btn-row .ph-btn-filled   { flex: 2; }
+
+/* ── TextField demo ──────────────────────────────────────────── */
+.ph-textfield {
+  background: rgba(255,255,255,0.06);
+  border-radius: 7px;
+  padding: clamp(5px, 0.6vw, 7px) clamp(6px, 0.7vw, 9px);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid transparent;
+  transition: all 0.5s var(--ease-expo);
+}
+.ph-textfield.styled {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.06);
+}
+.ph-tf-icon {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.ph-textfield.has-icon .ph-tf-icon { opacity: 1; }
+.ph-tf-icon svg {
+  width: clamp(9px, 0.9vw, 12px);
+  height: clamp(9px, 0.9vw, 12px);
+  stroke: rgba(255,255,255,0.35);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.ph-tf-hint {
+  font-family: var(--font-ui);
+  font-size: clamp(7px, 0.7vw, 9.5px);
+  color: rgba(255,255,255,0.25);
+  flex: 1;
+}
+.ph-tf-cursor {
+  display: inline-block;
+  width: 1.5px;
+  height: clamp(9px, 1vw, 12px);
+  background: #54C5F8;
+  animation: cursor-blink 1s step-end infinite;
+  flex-shrink: 0;
+}
+
+/* ── Filter chips ────────────────────────────────────────────── */
+.ph-chips { display: flex; gap: 4px; }
+.ph-chip {
+  padding: 2px 6px;
+  border-radius: 20px;
+  font-family: var(--font-ui);
+  font-size: clamp(6px, 0.62vw, 8.5px);
+  font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.38);
+  white-space: nowrap;
+}
+.ph-chip.active { background: rgba(84,197,248,0.12); color: #54C5F8; border-color: rgba(84,197,248,0.28); }
+
+/* ── Card demo ───────────────────────────────────────────────── */
+.ph-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 7px;
+  padding: clamp(6px, 0.7vw, 9px);
+}
+.ph-card-row { display: flex; gap: 7px; align-items: flex-start; }
+.ph-card-texts { flex: 1; display: flex; flex-direction: column; gap: 2px; overflow: hidden; }
+.ph-divider { height: 1px; background: rgba(255,255,255,0.07); margin: 4px 0; }
+.ph-meta-row { display: flex; gap: 5px; align-items: center; }
+.ph-meta-dot { width: 2px; height: 2px; background: rgba(255,255,255,0.18); border-radius: 50%; flex-shrink: 0; }
+
+/* ── Row layout helper ───────────────────────────────────────── */
+.ph-row { display: flex; align-items: center; gap: 5px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   CH2 — PER-SLIDE FRAGMENT TRANSITION RULES
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── ch2-3: Text widget (2 fragments / 3 steps) ─────────────── */
+#slide-ch2-3 .code-step-2,
+#slide-ch2-3 .code-step-3 { opacity:0; pointer-events:none; transition:opacity .4s ease; }
+#slide-ch2-3.frag-1-active .code-step-1 { opacity:0; pointer-events:none; }
+#slide-ch2-3.frag-1-active .code-step-2 { opacity:1; pointer-events:auto; }
+#slide-ch2-3.frag-2-active .code-step-2 { opacity:0; pointer-events:none; }
+#slide-ch2-3.frag-2-active .code-step-3 { opacity:1; pointer-events:auto; }
+#slide-ch2-3.frag-1-active .ph-state-0  { opacity:0; pointer-events:none; }
+#slide-ch2-3.frag-1-active .ph-state-1  { opacity:1; pointer-events:auto; }
+#slide-ch2-3.frag-2-active .ph-state-1  { opacity:0; pointer-events:none; }
+#slide-ch2-3.frag-2-active .ph-state-2  { opacity:1; pointer-events:auto; }
+
+/* ── ch2-4: Icon widget (1 fragment / 2 steps) ──────────────── */
+#slide-ch2-4 .code-step-2 { opacity:0; pointer-events:none; transition:opacity .4s ease; }
+#slide-ch2-4.frag-1-active .code-step-1 { opacity:0; pointer-events:none; }
+#slide-ch2-4.frag-1-active .code-step-2 { opacity:1; pointer-events:auto; }
+#slide-ch2-4.frag-1-active .ph-state-0  { opacity:0; pointer-events:none; }
+#slide-ch2-4.frag-1-active .ph-state-1  { opacity:1; pointer-events:auto; }
+
+/* ── ch2-5: Image widget (2 fragments / 3 steps) ────────────── */
+#slide-ch2-5 .code-step-2,
+#slide-ch2-5 .code-step-3 { opacity:0; pointer-events:none; transition:opacity .4s ease; }
+#slide-ch2-5.frag-1-active .code-step-1 { opacity:0; pointer-events:none; }
+#slide-ch2-5.frag-1-active .code-step-2 { opacity:1; pointer-events:auto; }
+#slide-ch2-5.frag-1-active .ph-state-0  { opacity:0; pointer-events:none; }
+#slide-ch2-5.frag-1-active .ph-state-1  { opacity:1; pointer-events:auto; }
+#slide-ch2-5.frag-2-active .code-step-2 { opacity:0; pointer-events:none; }
+#slide-ch2-5.frag-2-active .code-step-3 { opacity:1; pointer-events:auto; }
+#slide-ch2-5.frag-2-active .ph-state-1  { opacity:0; pointer-events:none; }
+#slide-ch2-5.frag-2-active .ph-state-2  { opacity:1; pointer-events:auto; }
+
+/* ── ch2-6: Buttons (2 fragments / 3 steps) ─────────────────── */
+#slide-ch2-6 .code-step-2,
+#slide-ch2-6 .code-step-3 { opacity:0; pointer-events:none; transition:opacity .4s ease; }
+#slide-ch2-6.frag-1-active .code-step-1 { opacity:0; pointer-events:none; }
+#slide-ch2-6.frag-1-active .code-step-2 { opacity:1; pointer-events:auto; }
+#slide-ch2-6.frag-1-active .ph-state-0  { opacity:0; pointer-events:none; }
+#slide-ch2-6.frag-1-active .ph-state-1  { opacity:1; pointer-events:auto; }
+#slide-ch2-6.frag-2-active .code-step-2 { opacity:0; pointer-events:none; }
+#slide-ch2-6.frag-2-active .code-step-3 { opacity:1; pointer-events:auto; }
+#slide-ch2-6.frag-2-active .ph-state-1  { opacity:0; pointer-events:none; }
+#slide-ch2-6.frag-2-active .ph-state-2  { opacity:1; pointer-events:auto; }
+
+/* ── ch2-7: TextField (1 fragment / 2 steps) ────────────────── */
+#slide-ch2-7 .code-step-2 { opacity:0; pointer-events:none; transition:opacity .4s ease; }
+#slide-ch2-7.frag-1-active .code-step-1 { opacity:0; pointer-events:none; }
+#slide-ch2-7.frag-1-active .code-step-2 { opacity:1; pointer-events:auto; }
+#slide-ch2-7.frag-1-active .ph-state-0  { opacity:0; pointer-events:none; }
+#slide-ch2-7.frag-1-active .ph-state-1  { opacity:1; pointer-events:auto; }
+
+/* ── ch2-8: Row + Column (1 fragment / 2 steps) ─────────────── */
+#slide-ch2-8 .code-step-2 { opacity:0; pointer-events:none; transition:opacity .4s ease; }
+#slide-ch2-8.frag-1-active .code-step-1 { opacity:0; pointer-events:none; }
+#slide-ch2-8.frag-1-active .code-step-2 { opacity:1; pointer-events:auto; }
+#slide-ch2-8.frag-1-active .ph-state-0  { opacity:0; pointer-events:none; }
+#slide-ch2-8.frag-1-active .ph-state-1  { opacity:1; pointer-events:auto; }
+
+/* ── ch2-9: Card (1 fragment / 2 steps) ─────────────────────── */
+#slide-ch2-9 .code-step-2 { opacity:0; pointer-events:none; transition:opacity .4s ease; }
+#slide-ch2-9.frag-1-active .code-step-1 { opacity:0; pointer-events:none; }
+#slide-ch2-9.frag-1-active .code-step-2 { opacity:1; pointer-events:auto; }
+#slide-ch2-9.frag-1-active .ph-state-0  { opacity:0; pointer-events:none; }
+#slide-ch2-9.frag-1-active .ph-state-1  { opacity:1; pointer-events:auto; }
+
+/* ── ch2-10: Search screen (3 fragments / 4 steps) ──────────── */
+#slide-ch2-10 .code-step-2,
+#slide-ch2-10 .code-step-3,
+#slide-ch2-10 .code-step-4 { opacity:0; pointer-events:none; transition:opacity .4s ease; }
+#slide-ch2-10.frag-1-active .code-step-1 { opacity:0; pointer-events:none; }
+#slide-ch2-10.frag-1-active .code-step-2 { opacity:1; pointer-events:auto; }
+#slide-ch2-10.frag-1-active .ph-state-0  { opacity:0; pointer-events:none; }
+#slide-ch2-10.frag-1-active .ph-state-1  { opacity:1; pointer-events:auto; }
+#slide-ch2-10.frag-2-active .code-step-2 { opacity:0; pointer-events:none; }
+#slide-ch2-10.frag-2-active .code-step-3 { opacity:1; pointer-events:auto; }
+#slide-ch2-10.frag-2-active .ph-state-1  { opacity:0; pointer-events:none; }
+#slide-ch2-10.frag-2-active .ph-state-2  { opacity:1; pointer-events:auto; }
+#slide-ch2-10.frag-3-active .code-step-3 { opacity:0; pointer-events:none; }
+#slide-ch2-10.frag-3-active .code-step-4 { opacity:1; pointer-events:auto; }
+#slide-ch2-10.frag-3-active .ph-state-2  { opacity:0; pointer-events:none; }
+#slide-ch2-10.frag-3-active .ph-state-3  { opacity:1; pointer-events:auto; }

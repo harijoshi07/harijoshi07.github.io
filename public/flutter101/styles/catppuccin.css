@@ -1,0 +1,113 @@
+/* ═══════════════════════════════════════════════════════════════
+   CATPPUCCIN MOCHA SYNTAX HIGHLIGHTING (PRISM.JS)
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  --ctp-rosewater: #f5e0dc;
+  --ctp-flamingo:  #f2cdcd;
+  --ctp-pink:      #f5c2e7;
+  --ctp-mauve:     #cba6f7;
+  --ctp-red:       #f38ba8;
+  --ctp-maroon:    #eba0ac;
+  --ctp-peach:     #fab387;
+  --ctp-yellow:    #f9e2af;
+  --ctp-green:     #a6e3a1;
+  --ctp-teal:      #94e2d5;
+  --ctp-sky:       #89dceb;
+  --ctp-sapphire:  #74c7ec;
+  --ctp-blue:      #89b4fa;
+  --ctp-lavender:  #b4befe;
+  --ctp-text:      #cdd6f4;
+  --ctp-subtext1:  #bac2de;
+  --ctp-subtext0:  #a6adc8;
+  --ctp-overlay2:  #9399b2;
+  --ctp-overlay1:  #7f849c;
+  --ctp-overlay0:  #6c7086;
+  --ctp-surface2:  #585b70;
+  --ctp-surface1:  #45475a;
+  --ctp-surface0:  #313244;
+  --ctp-base:      #1e1e2e;
+  --ctp-mantle:    #181825;
+  --ctp-crust:     #11111b;
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: var(--ctp-text);
+  font-family: var(--font-code) !important;
+  text-shadow: none;
+  background: transparent !important;
+  text-decoration: none !important;
+  border: none !important;
+}
+
+.token,
+.token * {
+  text-decoration: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: var(--ctp-overlay0) !important;
+  font-style: italic;
+}
+
+.token.punctuation {
+  color: var(--ctp-overlay2) !important;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: var(--ctp-peach) !important;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: var(--ctp-green) !important;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: var(--ctp-sky) !important;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: var(--ctp-mauve) !important;
+  font-weight: 600;
+}
+
+.token.function,
+.token.class-name {
+  color: var(--ctp-blue) !important;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: var(--ctp-flamingo) !important;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}

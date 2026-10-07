@@ -2,7 +2,6 @@
 title: "not a film review: unko sweater"
 date: 2025-06-02T20:12:49+05:45
 draft: false
-weight: 2
 
 cover:
   image: "images/unko_sweater.webp"
