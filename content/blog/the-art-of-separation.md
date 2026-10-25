@@ -7,7 +7,7 @@ cover:
   image: "images/the-art-of-separation.jpg"
   alt: ""
   caption: ""
-  relative: true
+  relative: false
   hidden: false
 ---
 
